@@ -16,5 +16,17 @@ namespace iTasks
         {
             InitializeComponent();
         }
+
+        private void buttonNewTask_Click(object sender, EventArgs e)
+        {
+            Form newForm = new frmGereTiposTarefas();
+            newForm.ShowDialog();
+        }
+
+        private void buttonNewUsers_Click(object sender, EventArgs e)
+        {
+            Form newForm = new frmGereUtilizadores();
+            newForm.ShowDialog();
+        }
     }
 }
