@@ -8,8 +8,8 @@ namespace iTasks.Models
 {
     public enum CurrentStatus
     {
-        ToDo,
-        Doing,
-        Done
+       ToDo,
+       Doing,
+       Done
     }
 }
