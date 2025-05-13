@@ -57,7 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="iTaskContext.cs" />
+    <Compile Include="Models\CurrentStatus.cs" />
     <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\ExperienceLevel.cs" />
     <Compile Include="Models\Manager.cs" />
     <Compile Include="Models\Programmer.cs" />
     <Compile Include="Models\Task.cs" />

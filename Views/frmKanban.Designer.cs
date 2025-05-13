@@ -160,14 +160,14 @@
             // buttonNewUsers
             // 
             this.buttonNewUsers.Name = "buttonNewUsers";
-            this.buttonNewUsers.Size = new System.Drawing.Size(187, 22);
+            this.buttonNewUsers.Size = new System.Drawing.Size(185, 22);
             this.buttonNewUsers.Text = "Gerir Utilizadores";
             this.buttonNewUsers.Click += new System.EventHandler(this.buttonNewUsers_Click);
             // 
             // gerirTiposDeTarefasToolStripMenuItem
             // 
             this.gerirTiposDeTarefasToolStripMenuItem.Name = "gerirTiposDeTarefasToolStripMenuItem";
-            this.gerirTiposDeTarefasToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.gerirTiposDeTarefasToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
             this.gerirTiposDeTarefasToolStripMenuItem.Text = "Gerir Tipos de Tarefas";
             this.gerirTiposDeTarefasToolStripMenuItem.Click += new System.EventHandler(this.gerirTiposDeTarefasToolStripMenuItem_Click);
             // 
@@ -190,8 +190,9 @@
             // tarefasEmCursoToolStripMenuItem
             // 
             this.tarefasEmCursoToolStripMenuItem.Name = "tarefasEmCursoToolStripMenuItem";
-            this.tarefasEmCursoToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
+            this.tarefasEmCursoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tarefasEmCursoToolStripMenuItem.Text = "Tarefas em Curso";
+            this.tarefasEmCursoToolStripMenuItem.Click += new System.EventHandler(this.tarefasEmCursoToolStripMenuItem_Click);
             // 
             // btSetDoing
             // 
