@@ -28,5 +28,17 @@ namespace iTasks
             Form newForm = new frmGereUtilizadores();
             newForm.ShowDialog();
         }
+
+        private void gerirTiposDeTarefasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form newForm = new frmGereTiposTarefas();
+            newForm.ShowDialog();
+        }
+
+        private void tarefasTerminadasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form newForm = new frmConsultarTarefasConcluidas();
+            newForm.ShowDialog();
+        }
     }
 }
