@@ -46,5 +46,10 @@ namespace iTasks
             Form newForm = new frmConsultaTarefasEmCurso();
             newForm.ShowDialog();
         }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
