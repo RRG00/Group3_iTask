@@ -8,5 +8,17 @@ namespace iTasks.Models
 {
     public class Programmer
     {
+        public string ExperienceLevel {get; set;}
+        public int IdManager { get; set;}
+        public Programmer()
+        {
+
+        }
+        public Programmer(string experienceLevel, int idManager)
+        {
+            ExperienceLevel = experienceLevel;
+            IdManager = idManager;
+        }
+       
     }
 }

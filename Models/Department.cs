@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace iTasks.Models
 {
-    internal class Manager
+    public enum Department
     {
-        Department Department { get; set; }
-        bool GereUsers { get; set; }
+       IT,
+       Marketing,
+       Admistracao
     }
 }

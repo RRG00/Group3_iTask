@@ -8,5 +8,7 @@ namespace iTasks.Models
 {
     public class TipeTask
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }
