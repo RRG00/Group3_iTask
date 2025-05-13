@@ -25,7 +25,7 @@ namespace iTasks
             string password = txtPassword.Text;
             Form secondForm = new frmKanban();
 
-            if (name == "manager" && password == "123")
+            if (name == "admin" && password == "123")
             {
                 MessageBox.Show("Login efetuado com sucesso!");
                 Hide();
