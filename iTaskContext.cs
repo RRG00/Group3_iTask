@@ -15,6 +15,8 @@ namespace iTasks
         public DbSet<Task> Tasks { get; set; }
         public DbSet<TipeTask> TipeTasks { get; set; }
     }
+
+     
 }
    
 
