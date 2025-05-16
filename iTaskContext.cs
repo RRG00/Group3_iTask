@@ -7,12 +7,15 @@ using System.Text;
 
 namespace iTasks
 {
-    internal class iTaskContext : DbContext
+    internal class ITaskContext : DbContext
     {
-       public DbSet<User> Users { get; set; }
-       public DbSet<Manager> Manager { get; set; }
-       public DbSet<Programmer> Programmers { get; set; }
-       public DbSet<Task> Tasks { get; set; }
-       public DbSet<TipeTask> TipeTasks { get; set; }   
+        public DbSet<User> Users { get; set; }
+        public DbSet<Manager> Manager { get; set; }
+        public DbSet<Programmer> Programmers { get; set; }
+        public DbSet<Task> Tasks { get; set; }
+        public DbSet<TipeTask> TipeTasks { get; set; }
     }
 }
+   
+
+
