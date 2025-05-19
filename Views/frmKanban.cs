@@ -51,5 +51,10 @@ namespace iTasks
         {
             Application.Exit();
         }
+
+        private void frmKanban_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

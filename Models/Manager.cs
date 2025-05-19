@@ -19,5 +19,15 @@ namespace iTasks.Models
             this.GereUsers = gereUtilizadores;
         }
 
+        public Manager()
+        {
+        }
+
+        public override string ToString()
+        {
+            return Name + " - " + Id;
+        }
+
+
     }
 }

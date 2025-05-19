@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
@@ -19,33 +20,64 @@ namespace iTasks
         public frmGereUtilizadores()
         {
             InitializeComponent();
+
             cbDepartamento.DataSource = Enum.GetValues(typeof(Department));
             ItaskContext = new ITaskContext();
-            
+
+            UpdateGestorList();
+
         }
 
         private void btGravarGestor_Click(object sender, EventArgs e)
         {
             using (var ItaskContext = new ITaskContext())
             {
-                string name = txtNomeGestor.Text;   
+               
+                string name = txtNomeGestor.Text;
                 string username = txtUsernameGestor.Text;
                 string password = txtPasswordGestor.Text;
                 Department Departamento = (Department)cbDepartamento.SelectedItem;
                 bool GereUtilizadores = chkGereUtilizadores.Checked;
-                              
-                Manager manager = new Manager(name,username,password, Departamento,GereUtilizadores);
+
+                Manager manager = new Manager(name, username, password, Departamento, GereUtilizadores);
                 ItaskContext.Manager.Add(manager);
                 ItaskContext.SaveChanges();
+
+                UpdateGestorList();
+
+                //Limpar campos apos submit
+                txtNomeGestor.Clear();
+                txtUsernameGestor.Clear();
+                txtPasswordGestor.Clear();
+                cbDepartamento.SelectedIndex = -1;
+                chkGereUtilizadores.Checked = false;
+
             }
         }
 
-        private void txtUsernameGestor_TextChanged(object sender, EventArgs e)
+        public void UpdateGestorList()
         {
-
+            using (var ItaskContext = new ITaskContext())
+            {
+                lstListaGestores.DataSource = null;
+                lstListaGestores.DataSource = ItaskContext.Manager.ToList();
+            }
         }
 
-        private void txtIdGestor_TextChanged(object sender, EventArgs e)
+        public int FindAvailableID()
+        {
+            using (var ItaskContext = new ITaskContext())
+            {
+                return ItaskContext.Users.Select(e => e.Id).DefaultIfEmpty(0).Max() + 1;
+            }
+        }
+
+        private void txtNomeGestor_Click(object sender, EventArgs e)
+        {
+            txtIdGestor.Text = FindAvailableID().ToString();
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
         {
 
         }

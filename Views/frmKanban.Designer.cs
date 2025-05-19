@@ -288,6 +288,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmKanban";
             this.Text = "frmKanban";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmKanban_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);

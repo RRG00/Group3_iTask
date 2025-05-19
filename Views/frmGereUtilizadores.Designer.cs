@@ -83,6 +83,7 @@
             this.txtNomeGestor.Name = "txtNomeGestor";
             this.txtNomeGestor.Size = new System.Drawing.Size(300, 26);
             this.txtNomeGestor.TabIndex = 36;
+            this.txtNomeGestor.Click += new System.EventHandler(this.txtNomeGestor_Click);
             // 
             // label4
             // 
@@ -102,7 +103,6 @@
             this.txtIdGestor.ReadOnly = true;
             this.txtIdGestor.Size = new System.Drawing.Size(91, 26);
             this.txtIdGestor.TabIndex = 34;
-            this.txtIdGestor.TextChanged += new System.EventHandler(this.txtIdGestor_TextChanged);
             // 
             // label1
             // 
@@ -160,6 +160,7 @@
             this.groupBox2.TabIndex = 38;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Gestores";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // chkGereUtilizadores
             // 
@@ -193,6 +194,7 @@
             // 
             // cbDepartamento
             // 
+            this.cbDepartamento.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDepartamento.FormattingEnabled = true;
             this.cbDepartamento.Location = new System.Drawing.Point(441, 312);
             this.cbDepartamento.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -217,7 +219,6 @@
             this.txtUsernameGestor.Name = "txtUsernameGestor";
             this.txtUsernameGestor.Size = new System.Drawing.Size(300, 26);
             this.txtUsernameGestor.TabIndex = 38;
-            this.txtUsernameGestor.TextChanged += new System.EventHandler(this.txtUsernameGestor_TextChanged);
             // 
             // label2
             // 
@@ -405,9 +406,10 @@
             this.ClientSize = new System.Drawing.Size(1576, 775);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmGereUtilizadores";
-            this.Text = "frmListaUtilizadores";
+            this.Text = "iTask - Formulário Utilizadores";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
