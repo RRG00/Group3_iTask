@@ -44,5 +44,10 @@ namespace iTasks
         {
 
         }
+
+        private void txtIdGestor_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -102,6 +102,7 @@
             this.txtIdGestor.ReadOnly = true;
             this.txtIdGestor.Size = new System.Drawing.Size(91, 26);
             this.txtIdGestor.TabIndex = 34;
+            this.txtIdGestor.TextChanged += new System.EventHandler(this.txtIdGestor_TextChanged);
             // 
             // label1
             // 
