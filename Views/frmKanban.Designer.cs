@@ -135,7 +135,6 @@
             this.listagensToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(1414, 33);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
@@ -197,14 +196,14 @@
             // buttonTaskDone
             // 
             this.buttonTaskDone.Name = "buttonTaskDone";
-            this.buttonTaskDone.Size = new System.Drawing.Size(270, 34);
+            this.buttonTaskDone.Size = new System.Drawing.Size(259, 34);
             this.buttonTaskDone.Text = "Tarefas Concluídas";
             this.buttonTaskDone.Click += new System.EventHandler(this.tarefasTerminadasToolStripMenuItem_Click);
             // 
             // buttonTaskDoing
             // 
             this.buttonTaskDoing.Name = "buttonTaskDoing";
-            this.buttonTaskDoing.Size = new System.Drawing.Size(270, 34);
+            this.buttonTaskDoing.Size = new System.Drawing.Size(259, 34);
             this.buttonTaskDoing.Text = "Tarefas em Curso";
             this.buttonTaskDoing.Click += new System.EventHandler(this.tarefasEmCursoToolStripMenuItem_Click);
             // 
@@ -284,6 +283,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmKanban";

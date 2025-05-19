@@ -13,9 +13,8 @@ namespace iTasks
         public DbSet<Manager> Manager { get; set; }
         public DbSet<Programmer> Programmers { get; set; }
         public DbSet<Task> Tasks { get; set; }
-        public DbSet<TipeTask> TipeTasks { get; set; }
+        public DbSet<TypeTask> TipeTasks { get; set; }
     }
-
      
 }
    

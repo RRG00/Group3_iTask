@@ -7,9 +7,17 @@ using System.Threading.Tasks;
 
 namespace iTasks.Models
 {
-    internal class Manager
+    public class Manager : User
     {
-        Department Department { get; set; }
-        bool GereUsers { get; set; }
+        
+        public Department Department { get; set; }
+        public bool GereUsers { get; set; }
+
+        public Manager(string name, string username, string password, Department departamento, bool gereUtilizadores) : base(name, username, password)
+        {
+            this.Department = departamento;
+            this.GereUsers = gereUtilizadores;
+        }
+
     }
 }

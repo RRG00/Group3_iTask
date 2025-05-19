@@ -13,9 +13,13 @@ namespace iTasks
 {
     public partial class frmLogin : Form
     {
+
+        ITaskContext ITaskContext;
         public frmLogin()
         {
+            ITaskContext dbContext = new ITaskContext();
             InitializeComponent();
+
         }
 
         //Login Button
@@ -43,7 +47,8 @@ namespace iTasks
              
             // criar as classes dos modelos ( 3 classes : programadores, gestores e utilizadores)
             // bases de dados -> 
-
+            
+            
         }
     }
 }

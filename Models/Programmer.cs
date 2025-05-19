@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace iTasks.Models
 {
-    public class Programmer
+    public class Programmer : User
     {
         public string ExperienceLevel {get; set;}
         public int IdManager { get; set;}
