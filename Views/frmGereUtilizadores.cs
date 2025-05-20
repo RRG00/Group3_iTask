@@ -21,6 +21,7 @@ namespace iTasks
         {
             InitializeComponent();
             cbDepartamento.DataSource = Enum.GetValues(typeof(Department));
+            cbNivelProg.DataSource = Enum.GetValues(typeof(ExperienceLevel));
             ItaskContext = new ITaskContext();
 
             UpdateGestorList();
@@ -62,7 +63,14 @@ namespace iTasks
                 lstListaGestores.DataSource = ItaskContext.Manager.ToList();
             }
         }
-
+        public void UpdateProgrammerList()
+        {
+            using (var ItaskContext = new ITaskContext())
+            {
+                cbGestorProg.DataSource = null;
+                cbGestorProg.DataSource = ItaskContext.Programmers.ToList();
+            }
+        }
         public int FindAvailableID()
         {
             using (var ItaskContext = new ITaskContext())
@@ -86,9 +94,32 @@ namespace iTasks
             using (var ItaskContext = new ITaskContext())
             {
                 string name = txtNomeProg.Text;
-                string username = txtUsernameProg.Text; 
+                string username = txtUsernameProg.Text;
                 string password = txtPasswordProg.Text;
-              
+                ExperienceLevel experienceLevel = (ExperienceLevel)cbNivelProg.SelectedItem;
+                int idManager = (int)lstListaGestores.SelectedValue;
+
+                Programmer programmer = new Programmer(name, username, password, experienceLevel, idManager);
+                ItaskContext.Programmers.Add(programmer);
+                ItaskContext.SaveChanges();
+
+                UpdateProgrammerList();
+
+            }
+
+        }
+        private void cbNivelProg_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmGereUtilizadores_Load(object sender, EventArgs e)
+        {
+            using (var taskContext = new ITaskContext())
+            {
+                lstListaGestores.DataSource = taskContext.Manager.ToList();
+                lstListaGestores.DisplayMember = "Name"; // funca para mostrar os manageres no Form do programador
+                lstListaGestores.ValueMember = "Id";
             }
         }
     }

@@ -11,7 +11,7 @@ namespace iTasks.Models
         public ExperienceLevel ExperienceLevel {get; set;}
         public int IdManager { get; set;}
 
-        public Programmer(ExperienceLevel experienceLevel, int idManager)
+        public Programmer(string name, string username, string password, ExperienceLevel experienceLevel, int idManager)
         {
             this.ExperienceLevel = experienceLevel;
             this.IdManager = idManager;
