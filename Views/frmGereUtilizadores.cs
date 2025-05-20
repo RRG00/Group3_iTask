@@ -20,7 +20,6 @@ namespace iTasks
         public frmGereUtilizadores()
         {
             InitializeComponent();
-
             cbDepartamento.DataSource = Enum.GetValues(typeof(Department));
             ItaskContext = new ITaskContext();
 
@@ -80,6 +79,17 @@ namespace iTasks
         private void groupBox2_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void btGravarProg_Click(object sender, EventArgs e)
+        {
+            using (var ItaskContext = new ITaskContext())
+            {
+                string name = txtNomeProg.Text;
+                string username = txtUsernameProg.Text; 
+                string password = txtPasswordProg.Text;
+              
+            }
         }
     }
 }

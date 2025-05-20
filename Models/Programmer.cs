@@ -10,15 +10,22 @@ namespace iTasks.Models
     {
         public string ExperienceLevel {get; set;}
         public int IdManager { get; set;}
+
+        public Programmer(string experienceLevel, int idManager)
+        {
+            this.ExperienceLevel = experienceLevel;
+            this.IdManager = idManager;
+        }
         public Programmer()
         {
 
         }
-        public Programmer(string experienceLevel, int idManager)
+
+        public override string ToString()
         {
-            ExperienceLevel = experienceLevel;
-            IdManager = idManager;
+            return Name + " - " + Id;
         }
-       
+
+
     }
 }
