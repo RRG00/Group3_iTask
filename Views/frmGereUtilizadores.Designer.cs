@@ -129,8 +129,9 @@
             // lstListaGestores
             // 
             this.lstListaGestores.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstListaGestores.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstListaGestores.FormattingEnabled = true;
-            this.lstListaGestores.ItemHeight = 20;
+            this.lstListaGestores.ItemHeight = 29;
             this.lstListaGestores.Location = new System.Drawing.Point(4, 24);
             this.lstListaGestores.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lstListaGestores.Name = "lstListaGestores";
@@ -356,8 +357,9 @@
             // lstListaProgramadores
             // 
             this.lstListaProgramadores.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstListaProgramadores.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstListaProgramadores.FormattingEnabled = true;
-            this.lstListaProgramadores.ItemHeight = 20;
+            this.lstListaProgramadores.ItemHeight = 29;
             this.lstListaProgramadores.Location = new System.Drawing.Point(4, 24);
             this.lstListaProgramadores.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lstListaProgramadores.Name = "lstListaProgramadores";

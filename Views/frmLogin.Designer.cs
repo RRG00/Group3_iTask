@@ -96,7 +96,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmLogin";
-            this.Text = "frmLogin";
+            this.Text = "iTask - Form Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 
