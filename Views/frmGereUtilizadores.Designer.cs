@@ -160,7 +160,6 @@
             this.groupBox2.TabIndex = 38;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Gestores";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // chkGereUtilizadores
             // 
@@ -313,7 +312,6 @@
             this.cbNivelProg.Name = "cbNivelProg";
             this.cbNivelProg.Size = new System.Drawing.Size(300, 28);
             this.cbNivelProg.TabIndex = 41;
-            this.cbNivelProg.SelectedIndexChanged += new System.EventHandler(this.cbNivelProg_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -414,7 +412,6 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmGereUtilizadores";
             this.Text = "iTask - Formulário Utilizadores";
-            this.Load += new System.EventHandler(this.frmGereUtilizadores_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

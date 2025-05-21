@@ -20,11 +20,15 @@ namespace iTasks
         public frmGereUtilizadores()
         {
             InitializeComponent();
-            cbDepartamento.DataSource = Enum.GetValues(typeof(Department));
-            cbNivelProg.DataSource = Enum.GetValues(typeof(ExperienceLevel));
+
             ItaskContext = new ITaskContext();
 
-            UpdateGestorList();
+            cbDepartamento.DataSource = Enum.GetValues(typeof(Department));
+            cbNivelProg.DataSource = Enum.GetValues(typeof(ExperienceLevel));
+
+            UpdateFields();
+            UpdateManagerList();
+            UpdateProgrammerList();
 
         }
 
@@ -43,7 +47,8 @@ namespace iTasks
                 ItaskContext.Manager.Add(manager);
                 ItaskContext.SaveChanges();
 
-                UpdateGestorList();
+                UpdateManagerList();
+                UpdateFields();
 
                 //Limpar campos apos submit
                 txtNomeGestor.Clear();
@@ -55,7 +60,15 @@ namespace iTasks
             }
         }
 
-        public void UpdateGestorList()
+        public void UpdateFields()
+        {
+            using (var ItaskContext = new ITaskContext())
+            {
+                cbGestorProg.DataSource = ItaskContext.Manager.ToList();
+            }
+        }
+
+        public void UpdateManagerList()
         {
             using (var ItaskContext = new ITaskContext())
             {
@@ -67,8 +80,8 @@ namespace iTasks
         {
             using (var ItaskContext = new ITaskContext())
             {
-                cbGestorProg.DataSource = null;
-                cbGestorProg.DataSource = ItaskContext.Programmers.ToList();
+                lstListaProgramadores.DataSource = null;
+                lstListaProgramadores.DataSource = ItaskContext.Programmers.ToList();
             }
         }
         public int FindAvailableID()
@@ -82,11 +95,6 @@ namespace iTasks
         private void txtNomeGestor_Click(object sender, EventArgs e)
         {
             txtIdGestor.Text = FindAvailableID().ToString();
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
         }
 
         private void btGravarProg_Click(object sender, EventArgs e)
@@ -107,20 +115,6 @@ namespace iTasks
 
             }
 
-        }
-        private void cbNivelProg_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void frmGereUtilizadores_Load(object sender, EventArgs e)
-        {
-            using (var taskContext = new ITaskContext())
-            {
-                lstListaGestores.DataSource = taskContext.Manager.ToList();
-                lstListaGestores.DisplayMember = "Name"; // funca para mostrar os manageres no Form do programador
-                lstListaGestores.ValueMember = "Id";
-            }
         }
     }
 }
