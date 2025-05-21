@@ -25,7 +25,7 @@ namespace iTasks.Models
 
         public override string ToString()
         {
-            return Name + " - " + Id;
+            return Name + " - " + "ID:" + Id;
         }
 
 

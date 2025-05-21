@@ -36,6 +36,8 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lstListaGestores = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btApagarGestor = new System.Windows.Forms.Button();
+            this.btAttGestor = new System.Windows.Forms.Button();
             this.chkGereUtilizadores = new System.Windows.Forms.CheckBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPasswordGestor = new System.Windows.Forms.TextBox();
@@ -44,6 +46,8 @@
             this.txtUsernameGestor = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btApagarProg = new System.Windows.Forms.Button();
+            this.btAttProg = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.cbGestorProg = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -59,10 +63,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtNomeProg = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.btAttGestor = new System.Windows.Forms.Button();
-            this.btApagarGestor = new System.Windows.Forms.Button();
-            this.btApagarProg = new System.Windows.Forms.Button();
-            this.btAttProg = new System.Windows.Forms.Button();
+            this.btCleanGestor = new System.Windows.Forms.Button();
+            this.btCleanProg = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -75,7 +77,7 @@
             this.btGravarGestor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btGravarGestor.Name = "btGravarGestor";
             this.btGravarGestor.Size = new System.Drawing.Size(302, 35);
-            this.btGravarGestor.TabIndex = 41;
+            this.btGravarGestor.TabIndex = 8;
             this.btGravarGestor.Text = "Gravar Dados";
             this.btGravarGestor.UseVisualStyleBackColor = true;
             this.btGravarGestor.Click += new System.EventHandler(this.btGravarGestor_Click);
@@ -86,8 +88,7 @@
             this.txtNomeGestor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNomeGestor.Name = "txtNomeGestor";
             this.txtNomeGestor.Size = new System.Drawing.Size(300, 26);
-            this.txtNomeGestor.TabIndex = 36;
-            this.txtNomeGestor.Click += new System.EventHandler(this.txtNomeGestor_Click);
+            this.txtNomeGestor.TabIndex = 3;
             // 
             // label4
             // 
@@ -106,7 +107,7 @@
             this.txtIdGestor.Name = "txtIdGestor";
             this.txtIdGestor.ReadOnly = true;
             this.txtIdGestor.Size = new System.Drawing.Size(91, 26);
-            this.txtIdGestor.TabIndex = 0;
+            this.txtIdGestor.TabIndex = 2;
             // 
             // label1
             // 
@@ -140,11 +141,12 @@
             this.lstListaGestores.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lstListaGestores.Name = "lstListaGestores";
             this.lstListaGestores.Size = new System.Drawing.Size(403, 671);
-            this.lstListaGestores.TabIndex = 0;
+            this.lstListaGestores.TabIndex = 1;
             this.lstListaGestores.SelectedIndexChanged += new System.EventHandler(this.lstListaGestores_SelectedIndexChanged);
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btCleanGestor);
             this.groupBox2.Controls.Add(this.btApagarGestor);
             this.groupBox2.Controls.Add(this.btAttGestor);
             this.groupBox2.Controls.Add(this.chkGereUtilizadores);
@@ -169,6 +171,28 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Gestores";
             // 
+            // btApagarGestor
+            // 
+            this.btApagarGestor.Location = new System.Drawing.Point(441, 525);
+            this.btApagarGestor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btApagarGestor.Name = "btApagarGestor";
+            this.btApagarGestor.Size = new System.Drawing.Size(302, 35);
+            this.btApagarGestor.TabIndex = 10;
+            this.btApagarGestor.Text = "Apagar Dados";
+            this.btApagarGestor.UseVisualStyleBackColor = true;
+            this.btApagarGestor.Click += new System.EventHandler(this.btApagarGestor_Click);
+            // 
+            // btAttGestor
+            // 
+            this.btAttGestor.Location = new System.Drawing.Point(439, 480);
+            this.btAttGestor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btAttGestor.Name = "btAttGestor";
+            this.btAttGestor.Size = new System.Drawing.Size(302, 35);
+            this.btAttGestor.TabIndex = 9;
+            this.btAttGestor.Text = "Atualizar Dados";
+            this.btAttGestor.UseVisualStyleBackColor = true;
+            this.btAttGestor.Click += new System.EventHandler(this.btAttGestor_Click);
+            // 
             // chkGereUtilizadores
             // 
             this.chkGereUtilizadores.AutoSize = true;
@@ -176,7 +200,7 @@
             this.chkGereUtilizadores.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chkGereUtilizadores.Name = "chkGereUtilizadores";
             this.chkGereUtilizadores.Size = new System.Drawing.Size(158, 24);
-            this.chkGereUtilizadores.TabIndex = 40;
+            this.chkGereUtilizadores.TabIndex = 7;
             this.chkGereUtilizadores.Text = "Gere Utilizadores";
             this.chkGereUtilizadores.UseVisualStyleBackColor = true;
             // 
@@ -197,7 +221,7 @@
             this.txtPasswordGestor.Name = "txtPasswordGestor";
             this.txtPasswordGestor.PasswordChar = '*';
             this.txtPasswordGestor.Size = new System.Drawing.Size(300, 26);
-            this.txtPasswordGestor.TabIndex = 38;
+            this.txtPasswordGestor.TabIndex = 5;
             // 
             // cbDepartamento
             // 
@@ -207,7 +231,7 @@
             this.cbDepartamento.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbDepartamento.Name = "cbDepartamento";
             this.cbDepartamento.Size = new System.Drawing.Size(300, 28);
-            this.cbDepartamento.TabIndex = 39;
+            this.cbDepartamento.TabIndex = 6;
             // 
             // label3
             // 
@@ -225,7 +249,7 @@
             this.txtUsernameGestor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtUsernameGestor.Name = "txtUsernameGestor";
             this.txtUsernameGestor.Size = new System.Drawing.Size(300, 26);
-            this.txtUsernameGestor.TabIndex = 37;
+            this.txtUsernameGestor.TabIndex = 4;
             // 
             // label2
             // 
@@ -239,6 +263,7 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.btCleanProg);
             this.groupBox3.Controls.Add(this.btApagarProg);
             this.groupBox3.Controls.Add(this.btAttProg);
             this.groupBox3.Controls.Add(this.label11);
@@ -264,6 +289,26 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Programadores";
             // 
+            // btApagarProg
+            // 
+            this.btApagarProg.Location = new System.Drawing.Point(441, 525);
+            this.btApagarProg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btApagarProg.Name = "btApagarProg";
+            this.btApagarProg.Size = new System.Drawing.Size(302, 35);
+            this.btApagarProg.TabIndex = 20;
+            this.btApagarProg.Text = "Apagar Dados";
+            this.btApagarProg.UseVisualStyleBackColor = true;
+            // 
+            // btAttProg
+            // 
+            this.btAttProg.Location = new System.Drawing.Point(439, 480);
+            this.btAttProg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btAttProg.Name = "btAttProg";
+            this.btAttProg.Size = new System.Drawing.Size(302, 35);
+            this.btAttProg.TabIndex = 19;
+            this.btAttProg.Text = "Atualizar Dados";
+            this.btAttProg.UseVisualStyleBackColor = true;
+            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -282,7 +327,7 @@
             this.cbGestorProg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbGestorProg.Name = "cbGestorProg";
             this.cbGestorProg.Size = new System.Drawing.Size(300, 28);
-            this.cbGestorProg.TabIndex = 46;
+            this.cbGestorProg.TabIndex = 17;
             // 
             // label6
             // 
@@ -300,7 +345,7 @@
             this.btGravarProg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btGravarProg.Name = "btGravarProg";
             this.btGravarProg.Size = new System.Drawing.Size(302, 35);
-            this.btGravarProg.TabIndex = 37;
+            this.btGravarProg.TabIndex = 18;
             this.btGravarProg.Text = "Gravar Dados";
             this.btGravarProg.UseVisualStyleBackColor = true;
             this.btGravarProg.Click += new System.EventHandler(this.btGravarProg_Click);
@@ -312,7 +357,7 @@
             this.txtPasswordProg.Name = "txtPasswordProg";
             this.txtPasswordProg.PasswordChar = '*';
             this.txtPasswordProg.Size = new System.Drawing.Size(300, 26);
-            this.txtPasswordProg.TabIndex = 44;
+            this.txtPasswordProg.TabIndex = 15;
             // 
             // cbNivelProg
             // 
@@ -322,7 +367,7 @@
             this.cbNivelProg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbNivelProg.Name = "cbNivelProg";
             this.cbNivelProg.Size = new System.Drawing.Size(300, 28);
-            this.cbNivelProg.TabIndex = 45;
+            this.cbNivelProg.TabIndex = 16;
             // 
             // label7
             // 
@@ -340,7 +385,7 @@
             this.txtUsernameProg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtUsernameProg.Name = "txtUsernameProg";
             this.txtUsernameProg.Size = new System.Drawing.Size(300, 26);
-            this.txtUsernameProg.TabIndex = 43;
+            this.txtUsernameProg.TabIndex = 14;
             // 
             // label8
             // 
@@ -374,7 +419,8 @@
             this.lstListaProgramadores.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lstListaProgramadores.Name = "lstListaProgramadores";
             this.lstListaProgramadores.Size = new System.Drawing.Size(403, 671);
-            this.lstListaProgramadores.TabIndex = 0;
+            this.lstListaProgramadores.TabIndex = 11;
+            this.lstListaProgramadores.SelectedIndexChanged += new System.EventHandler(this.lstListaProgramadores_SelectedIndexChanged);
             // 
             // txtIdProg
             // 
@@ -383,7 +429,7 @@
             this.txtIdProg.Name = "txtIdProg";
             this.txtIdProg.ReadOnly = true;
             this.txtIdProg.Size = new System.Drawing.Size(91, 26);
-            this.txtIdProg.TabIndex = 0;
+            this.txtIdProg.TabIndex = 12;
             // 
             // label9
             // 
@@ -401,8 +447,7 @@
             this.txtNomeProg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtNomeProg.Name = "txtNomeProg";
             this.txtNomeProg.Size = new System.Drawing.Size(300, 26);
-            this.txtNomeProg.TabIndex = 42;
-            this.txtNomeProg.Click += new System.EventHandler(this.txtNomeProg_Click);
+            this.txtNomeProg.TabIndex = 13;
             // 
             // label10
             // 
@@ -414,47 +459,27 @@
             this.label10.TabIndex = 35;
             this.label10.Text = "Nome:";
             // 
-            // btAttGestor
+            // btCleanGestor
             // 
-            this.btAttGestor.Location = new System.Drawing.Point(439, 480);
-            this.btAttGestor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btAttGestor.Name = "btAttGestor";
-            this.btAttGestor.Size = new System.Drawing.Size(302, 35);
-            this.btAttGestor.TabIndex = 43;
-            this.btAttGestor.Text = "Atualizar Dados";
-            this.btAttGestor.UseVisualStyleBackColor = true;
-            this.btAttGestor.Click += new System.EventHandler(this.btAttGestor_Click);
+            this.btCleanGestor.Location = new System.Drawing.Point(598, 53);
+            this.btCleanGestor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btCleanGestor.Name = "btCleanGestor";
+            this.btCleanGestor.Size = new System.Drawing.Size(143, 36);
+            this.btCleanGestor.TabIndex = 43;
+            this.btCleanGestor.Text = "Limpar Campos";
+            this.btCleanGestor.UseVisualStyleBackColor = true;
+            this.btCleanGestor.Click += new System.EventHandler(this.btCleanGestor_Click);
             // 
-            // btApagarGestor
+            // btCleanProg
             // 
-            this.btApagarGestor.Location = new System.Drawing.Point(441, 525);
-            this.btApagarGestor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btApagarGestor.Name = "btApagarGestor";
-            this.btApagarGestor.Size = new System.Drawing.Size(302, 35);
-            this.btApagarGestor.TabIndex = 44;
-            this.btApagarGestor.Text = "Apagar Dados";
-            this.btApagarGestor.UseVisualStyleBackColor = true;
-            this.btApagarGestor.Click += new System.EventHandler(this.btApagarGestor_Click);
-            // 
-            // btApagarProg
-            // 
-            this.btApagarProg.Location = new System.Drawing.Point(441, 525);
-            this.btApagarProg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btApagarProg.Name = "btApagarProg";
-            this.btApagarProg.Size = new System.Drawing.Size(302, 35);
-            this.btApagarProg.TabIndex = 46;
-            this.btApagarProg.Text = "Apagar Dados";
-            this.btApagarProg.UseVisualStyleBackColor = true;
-            // 
-            // btAttProg
-            // 
-            this.btAttProg.Location = new System.Drawing.Point(439, 480);
-            this.btAttProg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btAttProg.Name = "btAttProg";
-            this.btAttProg.Size = new System.Drawing.Size(302, 35);
-            this.btAttProg.TabIndex = 45;
-            this.btAttProg.Text = "Atualizar Dados";
-            this.btAttProg.UseVisualStyleBackColor = true;
+            this.btCleanProg.Location = new System.Drawing.Point(598, 54);
+            this.btCleanProg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btCleanProg.Name = "btCleanProg";
+            this.btCleanProg.Size = new System.Drawing.Size(143, 36);
+            this.btCleanProg.TabIndex = 44;
+            this.btCleanProg.Text = "Limpar Campos";
+            this.btCleanProg.UseVisualStyleBackColor = true;
+            this.btCleanProg.Click += new System.EventHandler(this.btCleanProg_Click);
             // 
             // frmGereUtilizadores
             // 
@@ -514,5 +539,7 @@
         private System.Windows.Forms.Button btAttGestor;
         private System.Windows.Forms.Button btApagarProg;
         private System.Windows.Forms.Button btAttProg;
+        private System.Windows.Forms.Button btCleanGestor;
+        private System.Windows.Forms.Button btCleanProg;
     }
 }
