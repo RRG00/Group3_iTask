@@ -40,13 +40,6 @@ namespace iTasks
                 MessageBox.Show("ERRO! Introduza os dados certos");
                 return;
             }
-            //abrir e fechar formularios
-            //Form secondForm = new frmKanban();
-            //Hide(); // esconder o form de login
-            //secondForm.ShowDialog(); // bloqueia a mudança de janela
-             
-            // criar as classes dos modelos ( 3 classes : programadores, gestores e utilizadores)
-            // bases de dados -> 
             
             
         }

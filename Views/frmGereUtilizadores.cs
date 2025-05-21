@@ -6,6 +6,8 @@ using System.Data;
 using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
+using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -25,6 +27,10 @@ namespace iTasks
 
             cbDepartamento.DataSource = Enum.GetValues(typeof(Department));
             cbNivelProg.DataSource = Enum.GetValues(typeof(ExperienceLevel));
+
+            cbDepartamento.SelectedIndex = -1;
+            cbNivelProg.SelectedIndex = -1;
+            cbGestorProg.SelectedIndex = -1;
 
             UpdateFields();
             UpdateManagerList();
@@ -55,7 +61,7 @@ namespace iTasks
                 txtNomeGestor.Clear();
                 txtUsernameGestor.Clear();
                 txtPasswordGestor.Clear();
-                cbDepartamento.SelectedIndex = -1;
+                cbDepartamento.SelectedIndex = 0;
                 chkGereUtilizadores.Checked = false;
 
             }
@@ -125,13 +131,64 @@ namespace iTasks
                 txtNomeProg.Clear();
                 txtUsernameProg.Clear();
                 txtPasswordProg.Clear();
-                cbNivelProg.SelectedIndex = -1;
-                cbGestorProg.SelectedIndex = -1;
+                cbNivelProg.SelectedIndex = 0;
+                cbGestorProg.SelectedIndex = 0;
                 
             }
 
         }
 
-        
+        private void btAttGestor_Click(object sender, EventArgs e)
+        {
+            /*
+            using (var dbContext = new CarContext())
+            {
+                var indexSelected = listBoxClients.SelectedIndex;
+                Client ClientSelect = (Client)listBoxClients.SelectedItem;
+                ClientSelect.Name = textBoxName.Text;
+                ClientSelect.Nif = textBoxNif.Text;
+                dbContext.Clients.AddOrUpdate(ClientSelect);
+                dbContext.SaveChanges();
+                listBoxClients.DataSource = dbContext.Clients.ToList();
+                listBoxClients.SelectedIndex = indexSelected;
+            }
+            */
+        }
+
+        private void btApagarGestor_Click(object sender, EventArgs e)
+        {
+            /*
+            using (var dbContext = new CarContext())
+            {
+                Client ClientSelect = (Client)listBoxClients.SelectedItem;
+                if (ClientSelect != null)
+                {
+                    dbContext.Clients.Remove(dbContext.Clients.Find(ClientSelect.Id));
+                    dbContext.SaveChanges();
+                    listBoxClients.DataSource = dbContext.Clients.ToList();
+                }
+
+            }
+            */
+        }
+
+        private void lstListaGestores_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            int index = lstListaGestores.SelectedIndex;
+            using (var ItaskContext = new ITaskContext())
+            {
+                User manager = (User)lstListaGestores.Items[index];
+
+                txtNomeGestor.Text = ItaskContext.Manager.Find(manager.Id).Name;
+                txtUsernameGestor.Text = ItaskContext.Manager.Find(manager.Id).Username;
+                txtPasswordGestor.Text = ItaskContext.Manager.Find(manager.Id).Password;
+                cbDepartamento.SelectedItem = ItaskContext.Manager.Find(manager.Id).Department;
+                chkGereUtilizadores.Checked = ItaskContext.Manager.Find(manager.Id).GereUsers;
+                
+
+            }
+            
+        }
     }
 }

@@ -196,14 +196,14 @@
             // buttonTaskDone
             // 
             this.buttonTaskDone.Name = "buttonTaskDone";
-            this.buttonTaskDone.Size = new System.Drawing.Size(259, 34);
+            this.buttonTaskDone.Size = new System.Drawing.Size(270, 34);
             this.buttonTaskDone.Text = "Tarefas Concluídas";
             this.buttonTaskDone.Click += new System.EventHandler(this.tarefasTerminadasToolStripMenuItem_Click);
             // 
             // buttonTaskDoing
             // 
             this.buttonTaskDoing.Name = "buttonTaskDoing";
-            this.buttonTaskDoing.Size = new System.Drawing.Size(259, 34);
+            this.buttonTaskDoing.Size = new System.Drawing.Size(270, 34);
             this.buttonTaskDoing.Text = "Tarefas em Curso";
             this.buttonTaskDoing.Click += new System.EventHandler(this.tarefasEmCursoToolStripMenuItem_Click);
             // 
