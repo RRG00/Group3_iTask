@@ -51,6 +51,7 @@ namespace iTasks
                 UpdateFields();
 
                 //Limpar campos apos submit
+                txtIdGestor.Clear();
                 txtNomeGestor.Clear();
                 txtUsernameGestor.Clear();
                 txtPasswordGestor.Clear();
@@ -97,6 +98,11 @@ namespace iTasks
             txtIdGestor.Text = FindAvailableID().ToString();
         }
 
+        private void txtNomeProg_Click(object sender, EventArgs e)
+        {
+            txtIdProg.Text = FindAvailableID().ToString();
+        }
+
         private void btGravarProg_Click(object sender, EventArgs e)
         {
             using (var ItaskContext = new ITaskContext())
@@ -105,7 +111,7 @@ namespace iTasks
                 string username = txtUsernameProg.Text;
                 string password = txtPasswordProg.Text;
                 ExperienceLevel experienceLevel = (ExperienceLevel)cbNivelProg.SelectedItem;
-                int idManager = (int)lstListaGestores.SelectedValue;
+                int idManager = ((Manager)cbGestorProg.SelectedItem).Id;
 
                 Programmer programmer = new Programmer(name, username, password, experienceLevel, idManager);
                 ItaskContext.Programmers.Add(programmer);
@@ -113,8 +119,19 @@ namespace iTasks
 
                 UpdateProgrammerList();
 
+
+                //Limpa os campos
+                txtIdProg.Clear();
+                txtNomeProg.Clear();
+                txtUsernameProg.Clear();
+                txtPasswordProg.Clear();
+                cbNivelProg.SelectedIndex = -1;
+                cbGestorProg.SelectedIndex = -1;
+                
             }
 
         }
+
+        
     }
 }

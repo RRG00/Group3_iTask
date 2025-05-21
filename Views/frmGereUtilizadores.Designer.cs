@@ -390,6 +390,7 @@
             this.txtNomeProg.Name = "txtNomeProg";
             this.txtNomeProg.Size = new System.Drawing.Size(300, 26);
             this.txtNomeProg.TabIndex = 36;
+            this.txtNomeProg.Click += new System.EventHandler(this.txtNomeProg_Click);
             // 
             // label10
             // 

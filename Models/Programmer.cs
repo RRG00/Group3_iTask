@@ -8,10 +8,10 @@ namespace iTasks.Models
 {
     public class Programmer : User
     {
-        public ExperienceLevel ExperienceLevel {get; set;}
-        public int IdManager { get; set;}
+        public ExperienceLevel ExperienceLevel { get; set; }
+        public int IdManager { get; set; }
 
-        public Programmer(string name, string username, string password, ExperienceLevel experienceLevel, int idManager)
+        public Programmer(string name, string username, string password, ExperienceLevel experienceLevel, int idManager) : base(name, username, password)
         {
             this.ExperienceLevel = experienceLevel;
             this.IdManager = idManager;
@@ -25,7 +25,5 @@ namespace iTasks.Models
         {
             return Name + " - " + Id;
         }
-
-
     }
 }
