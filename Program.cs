@@ -16,7 +16,17 @@ namespace iTasks
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmKanban());
+
+            using (ITaskContext context = new ITaskContext())
+            {
+                if (context.Users.Count() == 0)
+                {
+                    context.Users.Add(new Models.Manager("admin", "admin", "admin", Models.Department.IT, true));
+                    context.SaveChanges();
+                }
+            }
+
+            Application.Run(new frmLogin());
         }
     }
 }

@@ -13,8 +13,6 @@ namespace iTasks
 {
     public partial class frmLogin : Form
     {
-
-        ITaskContext ITaskContext;
         public frmLogin()
         {
             ITaskContext dbContext = new ITaskContext();
@@ -29,17 +27,27 @@ namespace iTasks
             string password = txtPassword.Text;
             Form secondForm = new frmKanban();
 
-            if (name == "admin" && password == "123")
+
+            using (var dbContext = new ITaskContext())
             {
-                MessageBox.Show("Login efetuado com sucesso!");
-                Hide();
-                secondForm.ShowDialog();
+                var user = dbContext.Users
+                    .FirstOrDefault(u => u.Username == name && u.Password == password);
+
+                if (user != null)
+                {
+                    MessageBox.Show("Login efetuado com sucesso!");
+                    secondForm = new frmKanban();
+                    Hide();
+                    secondForm.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("ERRO! Introduza os dados certos");
+                    return;
+                }
             }
-            else
-            {
-                MessageBox.Show("ERRO! Introduza os dados certos");
-                return;
-            }
+
+                
             
             
         }
