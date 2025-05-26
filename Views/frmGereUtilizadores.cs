@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
@@ -31,6 +32,8 @@ namespace iTasks
             txtIdProg.Text = FindAvailableID().ToString();
             txtIdGestor.Text = FindAvailableID().ToString();
 
+            lstListaProgramadores.SelectedItem = -1;
+            lstListaGestores.SelectedItem = -1;
             cbDepartamento.SelectedIndex = -1;
             cbNivelProg.SelectedIndex = -1;
             cbGestorProg.SelectedIndex = -1;
@@ -45,7 +48,7 @@ namespace iTasks
         {
             using (var ItaskContext = new ITaskContext())
             {
-               
+
                 string name = txtNomeGestor.Text;
                 string username = txtUsernameGestor.Text;
                 string password = txtPasswordGestor.Text;
@@ -76,7 +79,7 @@ namespace iTasks
         {
             LimparCamposGestor();
         }
-       
+
         public void LimparCamposProg()
         {
             txtIdProg.Clear();
@@ -85,7 +88,7 @@ namespace iTasks
             txtPasswordProg.Clear();
             cbNivelProg.SelectedIndex = -1;
             cbGestorProg.SelectedIndex = -1;
-        }  
+        }
 
         private void btCleanProg_Click(object sender, EventArgs e)
         {
@@ -104,16 +107,23 @@ namespace iTasks
         {
             using (var ItaskContext = new ITaskContext())
             {
+                var indexSelected = lstListaGestores.SelectedIndex;
+
                 lstListaGestores.DataSource = null;
                 lstListaGestores.DataSource = ItaskContext.Manager.ToList();
+                lstListaGestores.SelectedIndex = indexSelected;
+
             }
         }
         public void UpdateProgrammerList()
         {
             using (var ItaskContext = new ITaskContext())
             {
+                var indexSelected = lstListaProgramadores.SelectedIndex;
+
                 lstListaProgramadores.DataSource = null;
                 lstListaProgramadores.DataSource = ItaskContext.Programmers.ToList();
+                lstListaProgramadores.SelectedIndex = indexSelected;
             }
         }
         public int FindAvailableID()
@@ -141,26 +151,49 @@ namespace iTasks
                 UpdateProgrammerList();
 
                 LimparCamposProg();
-                
+
             }
 
         }
 
         private void btAttGestor_Click(object sender, EventArgs e)
         {
-            /*
-            using (var dbContext = new CarContext())
+
+            using (var ItaskContext = new ITaskContext())
             {
-                var indexSelected = listBoxClients.SelectedIndex;
-                Client ClientSelect = (Client)listBoxClients.SelectedItem;
-                ClientSelect.Name = textBoxName.Text;
-                ClientSelect.Nif = textBoxNif.Text;
-                dbContext.Clients.AddOrUpdate(ClientSelect);
-                dbContext.SaveChanges();
-                listBoxClients.DataSource = dbContext.Clients.ToList();
-                listBoxClients.SelectedIndex = indexSelected;
+                Manager ManagerSelect = (Manager)lstListaGestores.SelectedItem;
+
+                ManagerSelect.Name = txtNomeGestor.Text;
+                ManagerSelect.Username = txtUsernameGestor.Text;
+                ManagerSelect.Password = txtPasswordGestor.Text;
+                ManagerSelect.Department = (Department)cbDepartamento.SelectedItem;
+                ManagerSelect.GereUsers = chkGereUtilizadores.Checked;
+
+                ItaskContext.Manager.AddOrUpdate(ManagerSelect);
+                ItaskContext.SaveChanges();
+
+                UpdateManagerList();
             }
-            */
+
+        }
+
+        private void btAttProg_Click(object sender, EventArgs e)
+        {
+            using (var ItaskContext = new ITaskContext())
+            {
+                Programmer ProgrammerSelect = (Programmer)lstListaProgramadores.SelectedItem;
+
+                ProgrammerSelect.Name = txtNomeProg.Text;
+                ProgrammerSelect.Username = txtUsernameProg.Text;
+                ProgrammerSelect.Password = txtPasswordProg.Text;
+                ProgrammerSelect.ExperienceLevel = (ExperienceLevel)cbNivelProg.SelectedItem;
+                ProgrammerSelect.IdManager = ((Manager)cbGestorProg.SelectedItem).Id;
+
+                ItaskContext.Programmers.AddOrUpdate(ProgrammerSelect);
+                ItaskContext.SaveChanges();
+
+                UpdateProgrammerList();
+            }
         }
 
         private void btApagarGestor_Click(object sender, EventArgs e)
@@ -188,37 +221,49 @@ namespace iTasks
             using (var ItaskContext = new ITaskContext())
             {
                 User manager = (User)lstListaGestores.Items[index];
-                var man = ItaskContext.Manager.Find(manager.Id);
+                var mang = ItaskContext.Manager.Find(manager.Id);
 
-                txtIdGestor.Text = man.Id.ToString();
-                txtNomeGestor.Text = man.Name;
-                txtUsernameGestor.Text = man.Username;
-                txtPasswordGestor.Text = man.Password;
-                cbDepartamento.SelectedItem = man.Department;
-                chkGereUtilizadores.Checked = man.GereUsers;
+                txtIdGestor.Text = mang.Id.ToString();
+                txtNomeGestor.Text = mang.Name;
+                txtUsernameGestor.Text = mang.Username;
+                txtPasswordGestor.Text = mang.Password;
+                cbDepartamento.SelectedItem = mang.Department;
+                chkGereUtilizadores.Checked = mang.GereUsers;
             }
         }
 
         private void lstListaProgramadores_SelectedIndexChanged(object sender, EventArgs e)
         {
             int index = lstListaProgramadores.SelectedIndex;
-            if (index == -1) return; 
+            if (index == -1) return;
 
-            using (var ItaskContext = new ITaskContext())
+            using (var context = new ITaskContext())
             {
                 User programmer = (User)lstListaProgramadores.Items[index];
-                var prog = ItaskContext.Programmers.Find(programmer.Id);
-
+                var prog = context.Programmers.Find(programmer.Id);
 
                 txtIdProg.Text = prog.Id.ToString();
                 txtNomeProg.Text = prog.Name;
                 txtUsernameProg.Text = prog.Username;
                 txtPasswordProg.Text = prog.Password;
                 cbNivelProg.SelectedItem = prog.ExperienceLevel;
-                cbGestorProg.SelectedItem = prog.IdManager;
 
-
+                foreach (User user in cbGestorProg.Items.Cast<User>())
+                {
+                    if (user.Id == prog.IdManager)
+                    {
+                        cbGestorProg.SelectedItem = user;
+                        break;
+                    }
+                }
             }
         }
+
+        private void s(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

@@ -36,6 +36,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lstListaGestores = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btCleanGestor = new System.Windows.Forms.Button();
             this.btApagarGestor = new System.Windows.Forms.Button();
             this.btAttGestor = new System.Windows.Forms.Button();
             this.chkGereUtilizadores = new System.Windows.Forms.CheckBox();
@@ -46,6 +47,7 @@
             this.txtUsernameGestor = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btCleanProg = new System.Windows.Forms.Button();
             this.btApagarProg = new System.Windows.Forms.Button();
             this.btAttProg = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -63,8 +65,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.txtNomeProg = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.btCleanGestor = new System.Windows.Forms.Button();
-            this.btCleanProg = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -102,6 +102,7 @@
             // 
             // txtIdGestor
             // 
+            this.txtIdGestor.Enabled = false;
             this.txtIdGestor.Location = new System.Drawing.Point(441, 54);
             this.txtIdGestor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtIdGestor.Name = "txtIdGestor";
@@ -170,6 +171,17 @@
             this.groupBox2.TabIndex = 38;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Gestores";
+            // 
+            // btCleanGestor
+            // 
+            this.btCleanGestor.Location = new System.Drawing.Point(598, 53);
+            this.btCleanGestor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btCleanGestor.Name = "btCleanGestor";
+            this.btCleanGestor.Size = new System.Drawing.Size(143, 36);
+            this.btCleanGestor.TabIndex = 43;
+            this.btCleanGestor.Text = "Limpar Campos";
+            this.btCleanGestor.UseVisualStyleBackColor = true;
+            this.btCleanGestor.Click += new System.EventHandler(this.btCleanGestor_Click);
             // 
             // btApagarGestor
             // 
@@ -289,6 +301,17 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Programadores";
             // 
+            // btCleanProg
+            // 
+            this.btCleanProg.Location = new System.Drawing.Point(598, 54);
+            this.btCleanProg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btCleanProg.Name = "btCleanProg";
+            this.btCleanProg.Size = new System.Drawing.Size(143, 36);
+            this.btCleanProg.TabIndex = 44;
+            this.btCleanProg.Text = "Limpar Campos";
+            this.btCleanProg.UseVisualStyleBackColor = true;
+            this.btCleanProg.Click += new System.EventHandler(this.btCleanProg_Click);
+            // 
             // btApagarProg
             // 
             this.btApagarProg.Location = new System.Drawing.Point(441, 525);
@@ -308,6 +331,7 @@
             this.btAttProg.TabIndex = 19;
             this.btAttProg.Text = "Atualizar Dados";
             this.btAttProg.UseVisualStyleBackColor = true;
+            this.btAttProg.Click += new System.EventHandler(this.btAttProg_Click);
             // 
             // label11
             // 
@@ -368,6 +392,7 @@
             this.cbNivelProg.Name = "cbNivelProg";
             this.cbNivelProg.Size = new System.Drawing.Size(300, 28);
             this.cbNivelProg.TabIndex = 16;
+            this.cbNivelProg.Click += new System.EventHandler(this.s);
             // 
             // label7
             // 
@@ -424,6 +449,7 @@
             // 
             // txtIdProg
             // 
+            this.txtIdProg.Enabled = false;
             this.txtIdProg.Location = new System.Drawing.Point(441, 54);
             this.txtIdProg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtIdProg.Name = "txtIdProg";
@@ -458,28 +484,6 @@
             this.label10.Size = new System.Drawing.Size(55, 20);
             this.label10.TabIndex = 35;
             this.label10.Text = "Nome:";
-            // 
-            // btCleanGestor
-            // 
-            this.btCleanGestor.Location = new System.Drawing.Point(598, 53);
-            this.btCleanGestor.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btCleanGestor.Name = "btCleanGestor";
-            this.btCleanGestor.Size = new System.Drawing.Size(143, 36);
-            this.btCleanGestor.TabIndex = 43;
-            this.btCleanGestor.Text = "Limpar Campos";
-            this.btCleanGestor.UseVisualStyleBackColor = true;
-            this.btCleanGestor.Click += new System.EventHandler(this.btCleanGestor_Click);
-            // 
-            // btCleanProg
-            // 
-            this.btCleanProg.Location = new System.Drawing.Point(598, 54);
-            this.btCleanProg.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btCleanProg.Name = "btCleanProg";
-            this.btCleanProg.Size = new System.Drawing.Size(143, 36);
-            this.btCleanProg.TabIndex = 44;
-            this.btCleanProg.Text = "Limpar Campos";
-            this.btCleanProg.UseVisualStyleBackColor = true;
-            this.btCleanProg.Click += new System.EventHandler(this.btCleanProg_Click);
             // 
             // frmGereUtilizadores
             // 
