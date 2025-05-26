@@ -46,7 +46,6 @@ namespace iTasks
             Form newForm = new frmConsultaTarefasEmCurso();
             newForm.ShowDialog();
         }
-<<<<<<< Updated upstream
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -57,7 +56,5 @@ namespace iTasks
         {
             Application.Exit();
         }
-=======
->>>>>>> Stashed changes
     }
 }

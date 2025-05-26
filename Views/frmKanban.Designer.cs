@@ -173,22 +173,17 @@
             // buttonNewUsers
             // 
             this.buttonNewUsers.Name = "buttonNewUsers";
-<<<<<<< Updated upstream
             this.buttonNewUsers.Size = new System.Drawing.Size(283, 34);
-=======
             this.buttonNewUsers.Size = new System.Drawing.Size(185, 22);
->>>>>>> Stashed changes
             this.buttonNewUsers.Text = "Gerir Utilizadores";
             this.buttonNewUsers.Click += new System.EventHandler(this.buttonNewUsers_Click);
             // 
             // gerirTiposDeTarefasToolStripMenuItem
             // 
             this.gerirTiposDeTarefasToolStripMenuItem.Name = "gerirTiposDeTarefasToolStripMenuItem";
-<<<<<<< Updated upstream
             this.gerirTiposDeTarefasToolStripMenuItem.Size = new System.Drawing.Size(283, 34);
-=======
+
             this.gerirTiposDeTarefasToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
->>>>>>> Stashed changes
             this.gerirTiposDeTarefasToolStripMenuItem.Text = "Gerir Tipos de Tarefas";
             this.gerirTiposDeTarefasToolStripMenuItem.Click += new System.EventHandler(this.gerirTiposDeTarefasToolStripMenuItem_Click);
             // 
@@ -210,17 +205,10 @@
             // 
             // buttonTaskDoing
             // 
-<<<<<<< Updated upstream
             this.buttonTaskDoing.Name = "buttonTaskDoing";
             this.buttonTaskDoing.Size = new System.Drawing.Size(270, 34);
             this.buttonTaskDoing.Text = "Tarefas em Curso";
             this.buttonTaskDoing.Click += new System.EventHandler(this.tarefasEmCursoToolStripMenuItem_Click);
-=======
-            this.tarefasEmCursoToolStripMenuItem.Name = "tarefasEmCursoToolStripMenuItem";
-            this.tarefasEmCursoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.tarefasEmCursoToolStripMenuItem.Text = "Tarefas em Curso";
-            this.tarefasEmCursoToolStripMenuItem.Click += new System.EventHandler(this.tarefasEmCursoToolStripMenuItem_Click);
->>>>>>> Stashed changes
             // 
             // btSetDoing
             // 
