@@ -29,7 +29,10 @@ namespace iTasks
                 ItaskContext.TipeTasks.Add(typeTask);
                 ItaskContext.SaveChanges();
 
+                txtId.Text = FindAvailableID().ToString();
+
                 UpdateFields();
+                
             }
         }
         public void UpdateFields()
@@ -47,10 +50,13 @@ namespace iTasks
                 lstLista.DataSource = ItaskContext.Manager.ToList();
             }
         }
-
-        private void btGravar_Click(object sender, EventArgs e)
+        public int FindAvailableID()
         {
-
+            using (var ItaskContext = new ITaskContext())
+            {
+                return ItaskContext.TipeTasks.Select(e => e.Id).DefaultIfEmpty(0).Max() + 1;
+            }
         }
+
     }
 }
