@@ -21,5 +21,10 @@ namespace iTasks
         {
 
         }
+
+        private void btFechar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
