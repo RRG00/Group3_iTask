@@ -47,5 +47,10 @@ namespace iTasks
                 lstLista.DataSource = ItaskContext.Manager.ToList();
             }
         }
+
+        private void btGravar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

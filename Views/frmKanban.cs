@@ -19,7 +19,7 @@ namespace iTasks
 
         private void buttonNewTask_Click(object sender, EventArgs e)
         {
-            Form newForm = new frmGereTiposTarefas();
+            Form newForm = new frmDetalhesTarefa();
             newForm.ShowDialog();
         }
 
