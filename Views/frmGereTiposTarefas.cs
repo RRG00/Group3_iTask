@@ -29,7 +29,10 @@ namespace iTasks
                 ItaskContext.TipeTasks.Add(typeTask);
                 ItaskContext.SaveChanges();
 
+                txtId.Text = FindAvailableID().ToString();
+
                 UpdateFields();
+                
             }
         }
         public void UpdateFields()
@@ -47,5 +50,13 @@ namespace iTasks
                 lstLista.DataSource = ItaskContext.TipeTasks.ToList();
             }
         }
+        public int FindAvailableID()
+        {
+            using (var ItaskContext = new ITaskContext())
+            {
+                return ItaskContext.TipeTasks.Select(e => e.Id).DefaultIfEmpty(0).Max() + 1;
+            }
+        }
+
     }
 }
