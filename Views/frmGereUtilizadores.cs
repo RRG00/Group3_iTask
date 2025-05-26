@@ -1,4 +1,5 @@
-﻿using iTasks.Models;
+﻿using iTasks.Controllers;
+using iTasks.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +21,8 @@ namespace iTasks
     public partial class frmGereUtilizadores : Form
     {
         private ITaskContext ItaskContext;
+
+        private UserController userController = new UserController();
         public frmGereUtilizadores()
         {
             InitializeComponent();
@@ -32,8 +35,6 @@ namespace iTasks
             txtIdProg.Text = FindAvailableID().ToString();
             txtIdGestor.Text = FindAvailableID().ToString();
 
-            lstListaProgramadores.SelectedItem = -1;
-            lstListaGestores.SelectedItem = -1;
             cbDepartamento.SelectedIndex = -1;
             cbNivelProg.SelectedIndex = -1;
             cbGestorProg.SelectedIndex = -1;
@@ -55,18 +56,16 @@ namespace iTasks
                 Department Departamento = (Department)cbDepartamento.SelectedItem;
                 bool GereUtilizadores = chkGereUtilizadores.Checked;
 
-                Manager manager = new Manager(name, username, password, Departamento, GereUtilizadores);
-                ItaskContext.Manager.Add(manager);
-                ItaskContext.SaveChanges();
+                userController.CreateManager(name, username, password, Departamento, GereUtilizadores);
 
                 UpdateManagerList();
                 UpdateFields();
 
-                LimparCamposGestor();
+                CleanManagerFields();
 
             }
         }
-        public void LimparCamposGestor()
+        public void CleanManagerFields()
         {
             txtIdGestor.Clear();
             txtNomeGestor.Clear();
@@ -77,10 +76,10 @@ namespace iTasks
         }
         private void btCleanGestor_Click(object sender, EventArgs e)
         {
-            LimparCamposGestor();
+            CleanManagerFields();
         }
 
-        public void LimparCamposProg()
+        public void CleanProgFields()
         {
             txtIdProg.Clear();
             txtNomeProg.Clear();
@@ -92,7 +91,7 @@ namespace iTasks
 
         private void btCleanProg_Click(object sender, EventArgs e)
         {
-            LimparCamposProg();
+            CleanProgFields();
         }
 
         public void UpdateFields()
@@ -111,7 +110,6 @@ namespace iTasks
 
                 lstListaGestores.DataSource = null;
                 lstListaGestores.DataSource = ItaskContext.Manager.ToList();
-                lstListaGestores.SelectedIndex = indexSelected;
 
             }
         }
@@ -142,15 +140,13 @@ namespace iTasks
                 string username = txtUsernameProg.Text;
                 string password = txtPasswordProg.Text;
                 ExperienceLevel experienceLevel = (ExperienceLevel)cbNivelProg.SelectedItem;
-                int idManager = ((Manager)cbGestorProg.SelectedItem).Id;
+                Manager idManager = (Manager)cbGestorProg.SelectedItem;
 
-                Programmer programmer = new Programmer(name, username, password, experienceLevel, idManager);
-                ItaskContext.Programmers.Add(programmer);
-                ItaskContext.SaveChanges();
+                userController.CreateProgrammer(name, username, password, experienceLevel, idManager);
 
                 UpdateProgrammerList();
 
-                LimparCamposProg();
+                CleanProgFields();
 
             }
 
@@ -177,6 +173,24 @@ namespace iTasks
 
         }
 
+        private void btApagarGestor_Click(object sender, EventArgs e)
+        {
+
+            using (var ITaskContext = new ITaskContext())
+            {
+                Manager ManagerSelect = (Manager)lstListaGestores.SelectedItem;
+                if (ManagerSelect != null)
+                {
+                    ItaskContext.Manager.Remove(ItaskContext.Manager.Find(ManagerSelect.Id));
+                    ItaskContext.SaveChanges();
+
+                    UpdateManagerList();
+                }
+
+            }
+
+        }
+
         private void btAttProg_Click(object sender, EventArgs e)
         {
             using (var ItaskContext = new ITaskContext())
@@ -187,7 +201,7 @@ namespace iTasks
                 ProgrammerSelect.Username = txtUsernameProg.Text;
                 ProgrammerSelect.Password = txtPasswordProg.Text;
                 ProgrammerSelect.ExperienceLevel = (ExperienceLevel)cbNivelProg.SelectedItem;
-                ProgrammerSelect.IdManager = ((Manager)cbGestorProg.SelectedItem).Id;
+                ProgrammerSelect.IdManager = (Manager)cbGestorProg.SelectedItem;
 
                 ItaskContext.Programmers.AddOrUpdate(ProgrammerSelect);
                 ItaskContext.SaveChanges();
@@ -196,22 +210,24 @@ namespace iTasks
             }
         }
 
-        private void btApagarGestor_Click(object sender, EventArgs e)
+        private void btApagarProg_Click(object sender, EventArgs e)
         {
-            /*
-            using (var dbContext = new CarContext())
+            using (var ITaskContext = new ITaskContext())
             {
-                Client ClientSelect = (Client)listBoxClients.SelectedItem;
-                if (ClientSelect != null)
+                Programmer ProgrammerSelect = (Programmer)lstListaProgramadores.SelectedItem;
+                if (ProgrammerSelect != null)
                 {
-                    dbContext.Clients.Remove(dbContext.Clients.Find(ClientSelect.Id));
-                    dbContext.SaveChanges();
-                    listBoxClients.DataSource = dbContext.Clients.ToList();
+                    ItaskContext.Programmers.Remove(ItaskContext.Programmers.Find(ProgrammerSelect.Id));
+                    ItaskContext.SaveChanges();
+
+                    UpdateManagerList();
                 }
 
             }
-            */
         }
+
+
+
 
         private void lstListaGestores_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -250,7 +266,7 @@ namespace iTasks
 
                 foreach (User user in cbGestorProg.Items.Cast<User>())
                 {
-                    if (user.Id == prog.IdManager)
+                    if (user.Id == prog.IdManager.Id)
                     {
                         cbGestorProg.SelectedItem = user;
                         break;

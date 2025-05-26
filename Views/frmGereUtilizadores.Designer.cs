@@ -321,6 +321,7 @@
             this.btApagarProg.TabIndex = 20;
             this.btApagarProg.Text = "Apagar Dados";
             this.btApagarProg.UseVisualStyleBackColor = true;
+            this.btApagarProg.Click += new System.EventHandler(this.btApagarProg_Click);
             // 
             // btAttProg
             // 
