@@ -44,7 +44,7 @@ namespace iTasks
             using (var ItaskContext = new ITaskContext())
             {
                 lstLista.DataSource = null;
-                lstLista.DataSource = ItaskContext.Manager.ToList();
+                lstLista.DataSource = ItaskContext.TipeTasks.ToList();
             }
         }
     }
