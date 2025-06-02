@@ -140,7 +140,7 @@ namespace iTasks
 
                 lstListaProgramadores.DataSource = null;
                 lstListaProgramadores.DataSource = ItaskContext.Programmers.ToList();
-                lstListaProgramadores.SelectedIndex = indexSelected;
+                
             }
         }
         public int FindAvailableID()
