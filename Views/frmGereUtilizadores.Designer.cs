@@ -89,6 +89,7 @@
             this.txtNomeGestor.Name = "txtNomeGestor";
             this.txtNomeGestor.Size = new System.Drawing.Size(300, 26);
             this.txtNomeGestor.TabIndex = 3;
+            this.txtNomeGestor.Enter += new System.EventHandler(this.txtNomeGestor_Enter);
             // 
             // label4
             // 
@@ -475,6 +476,7 @@
             this.txtNomeProg.Name = "txtNomeProg";
             this.txtNomeProg.Size = new System.Drawing.Size(300, 26);
             this.txtNomeProg.TabIndex = 13;
+            this.txtNomeProg.Enter += new System.EventHandler(this.txtNomeProg_Enter);
             // 
             // label10
             // 

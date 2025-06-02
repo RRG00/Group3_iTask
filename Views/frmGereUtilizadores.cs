@@ -47,22 +47,41 @@ namespace iTasks
 
         private void btGravarGestor_Click(object sender, EventArgs e)
         {
-            using (var ItaskContext = new ITaskContext())
+            var errors = new List<string>();
+
+            string name = txtNomeGestor.Text.Trim();
+            string username = txtUsernameGestor.Text.Trim();
+            string password = txtPasswordGestor.Text;
+            Department? department = cbDepartamento.SelectedItem != null ? (Department?)cbDepartamento.SelectedItem : null;
+            bool manageUsers = chkGereUtilizadores.Checked;
+
+            // Validations
+            if (string.IsNullOrWhiteSpace(name)) errors.Add("Nome é obrigatório");
+            if (string.IsNullOrWhiteSpace(username)) errors.Add("Username é obrigatório");
+            if (string.IsNullOrWhiteSpace(password)) errors.Add("Password é obrigatório");
+            else if (password.Length < 6) errors.Add("Password tem que ter no minímo 6 caracteres");
+            if (department == null) errors.Add("Selecione o departamento");
+
+            if (errors.Any())
             {
+                MessageBox.Show($"Por favor corrija:\n• {string.Join("\n• ", errors)}", "Erro de validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                string name = txtNomeGestor.Text;
-                string username = txtUsernameGestor.Text;
-                string password = txtPasswordGestor.Text;
-                Department Departamento = (Department)cbDepartamento.SelectedItem;
-                bool GereUtilizadores = chkGereUtilizadores.Checked;
-
-                userController.CreateManager(name, username, password, Departamento, GereUtilizadores);
-
-                UpdateManagerList();
-                UpdateFields();
-
-                CleanManagerFields();
-
+            try
+            {
+                using (var context = new ITaskContext())
+                {
+                    userController.CreateManager(name, username, password, department.Value, manageUsers);
+                    UpdateManagerList();
+                    UpdateFields();
+                    CleanManagerFields();
+                    MessageBox.Show("Manager criado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error ao criar um manager:\n{ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         public void CleanManagerFields()
@@ -134,43 +153,88 @@ namespace iTasks
 
         private void btGravarProg_Click(object sender, EventArgs e)
         {
-            using (var ItaskContext = new ITaskContext())
+            var errors = new List<string>();
+
+            string name = txtNomeProg.Text.Trim();
+            string username = txtUsernameProg.Text.Trim();
+            string password = txtPasswordProg.Text;
+            ExperienceLevel? experienceLevel = cbNivelProg.SelectedItem != null ? (ExperienceLevel?)cbNivelProg.SelectedItem : null;
+            Manager manager = cbGestorProg.SelectedItem as Manager;
+
+            // Validations
+            if (string.IsNullOrWhiteSpace(name)) errors.Add("Nome é obrigatório");
+            if (string.IsNullOrWhiteSpace(username)) errors.Add("Username é obrigatório");
+            if (string.IsNullOrWhiteSpace(password)) errors.Add("Password é obrigatório");
+            else if (password.Length < 6) errors.Add("Password tem que ter no minímo 6 caracteres");
+            if (experienceLevel == null) errors.Add("Selecione o nível de experiencia");
+            if (manager == null) errors.Add("Selecione um Manager");
+
+            if (errors.Any())
             {
-                string name = txtNomeProg.Text;
-                string username = txtUsernameProg.Text;
-                string password = txtPasswordProg.Text;
-                ExperienceLevel experienceLevel = (ExperienceLevel)cbNivelProg.SelectedItem;
-                Manager idManager = (Manager)cbGestorProg.SelectedItem;
-
-                userController.CreateProgrammer(name, username, password, experienceLevel, idManager);
-
-                UpdateProgrammerList();
-
-                CleanProgFields();
-
+                MessageBox.Show($"Por favor corrija:\n• {string.Join("\n• ", errors)}", "Erro de validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
+            try
+            {
+                using (var context = new ITaskContext())
+                {
+                    userController.CreateProgrammer(name, username, password, experienceLevel.Value, manager);
+                    UpdateProgrammerList();
+                    CleanProgFields();
+                    MessageBox.Show("Programador criado com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error ao criar um programador:\n{ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btAttGestor_Click(object sender, EventArgs e)
         {
+            var errors = new List<string>();
 
-            using (var ItaskContext = new ITaskContext())
+            Manager managerSelect = lstListaGestores.SelectedItem as Manager;
+            string name = txtNomeGestor.Text.Trim();
+            string username = txtUsernameGestor.Text.Trim();
+            string password = txtPasswordGestor.Text;
+            Department? department = cbDepartamento.SelectedItem != null ? (Department?)cbDepartamento.SelectedItem : null;
+            bool manageUsers = chkGereUtilizadores.Checked;
+
+            // Validations
+            if (managerSelect == null) errors.Add("Por favor selecione um manager");
+            if (string.IsNullOrWhiteSpace(name)) errors.Add("Name é obrigatório");
+            if (string.IsNullOrWhiteSpace(username)) errors.Add("Username é obrigatório");
+            if (string.IsNullOrWhiteSpace(password)) errors.Add("Password é obrigatório");
+            else if (password.Length < 6) errors.Add("Password tem que ter no minimo 6 caracteres");
+            if (department == null) errors.Add("Departamento tem que estar selecionado");
+
+            if (errors.Any())
             {
-                Manager ManagerSelect = (Manager)lstListaGestores.SelectedItem;
-
-                ManagerSelect.Name = txtNomeGestor.Text;
-                ManagerSelect.Username = txtUsernameGestor.Text;
-                ManagerSelect.Password = txtPasswordGestor.Text;
-                ManagerSelect.Department = (Department)cbDepartamento.SelectedItem;
-                ManagerSelect.GereUsers = chkGereUtilizadores.Checked;
-
-                ItaskContext.Manager.AddOrUpdate(ManagerSelect);
-                ItaskContext.SaveChanges();
-
-                UpdateManagerList();
+                MessageBox.Show($"Por favor corrija:\n• {string.Join("\n• ", errors)}", "Erro de validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
+            try
+            {
+                using (var context = new ITaskContext())
+                {
+                    managerSelect.Name = name;
+                    managerSelect.Username = username;
+                    managerSelect.Password = password;
+                    managerSelect.Department = department.Value;
+                    managerSelect.GereUsers = manageUsers;
+                    context.Manager.AddOrUpdate(managerSelect);
+                    context.SaveChanges();
+                    UpdateManagerList();
+                    MessageBox.Show("Update com sucesso!", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro no update:\n{ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btApagarGestor_Click(object sender, EventArgs e)
@@ -184,7 +248,13 @@ namespace iTasks
                     ItaskContext.Manager.Remove(ItaskContext.Manager.Find(ManagerSelect.Id));
                     ItaskContext.SaveChanges();
 
+                    UpdateFields();
                     UpdateManagerList();
+                    CleanManagerFields();
+                }
+                else
+                {
+                    return;
                 }
 
             }
@@ -193,20 +263,48 @@ namespace iTasks
 
         private void btAttProg_Click(object sender, EventArgs e)
         {
-            using (var ItaskContext = new ITaskContext())
+            var errors = new List<string>();
+
+            Programmer programmerSelect = lstListaProgramadores.SelectedItem as Programmer;
+            string name = txtNomeProg.Text.Trim();
+            string username = txtUsernameProg.Text.Trim();
+            string password = txtPasswordProg.Text;
+            ExperienceLevel? experienceLevel = cbNivelProg.SelectedItem != null ? (ExperienceLevel?)cbNivelProg.SelectedItem : null;
+            Manager manager = cbGestorProg.SelectedItem as Manager;
+
+            // Validations
+            if (programmerSelect == null) errors.Add("Por favor selecione um programador");
+            if (string.IsNullOrWhiteSpace(name)) errors.Add("Nome é obrigatório");
+            if (string.IsNullOrWhiteSpace(username)) errors.Add("Username é obrigatório");
+            if (string.IsNullOrWhiteSpace(password)) errors.Add("Password é obrigatório");
+            else if (password.Length < 6) errors.Add("Password tem que ter no minimo 6 caracteres");
+            if (experienceLevel == null) errors.Add("Selecione o nível de experiencia");
+            if (manager == null) errors.Add("Selecione um Manager");
+
+            if (errors.Any())
             {
-                Programmer ProgrammerSelect = (Programmer)lstListaProgramadores.SelectedItem;
+                MessageBox.Show($"Por favor corrija:\n• {string.Join("\n• ", errors)}", "Erros de validação", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                ProgrammerSelect.Name = txtNomeProg.Text;
-                ProgrammerSelect.Username = txtUsernameProg.Text;
-                ProgrammerSelect.Password = txtPasswordProg.Text;
-                ProgrammerSelect.ExperienceLevel = (ExperienceLevel)cbNivelProg.SelectedItem;
-                ProgrammerSelect.IdManager = (Manager)cbGestorProg.SelectedItem;
-
-                ItaskContext.Programmers.AddOrUpdate(ProgrammerSelect);
-                ItaskContext.SaveChanges();
-
-                UpdateProgrammerList();
+            try
+            {
+                using (var context = new ITaskContext())
+                {
+                    programmerSelect.Name = name;
+                    programmerSelect.Username = username;
+                    programmerSelect.Password = password;
+                    programmerSelect.ExperienceLevel = experienceLevel.Value;
+                    programmerSelect.IdManager = manager;
+                    context.Programmers.AddOrUpdate(programmerSelect);
+                    context.SaveChanges();
+                    UpdateProgrammerList();
+                    MessageBox.Show("Update com sucesso!", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Update com erro!:\n{ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -220,7 +318,12 @@ namespace iTasks
                     ItaskContext.Programmers.Remove(ItaskContext.Programmers.Find(ProgrammerSelect.Id));
                     ItaskContext.SaveChanges();
 
-                    UpdateManagerList();
+                    UpdateFields();
+                    CleanProgFields();
+                    UpdateProgrammerList();
+                }else
+                {
+                    return;
                 }
 
             }
@@ -256,7 +359,7 @@ namespace iTasks
             using (var context = new ITaskContext())
             {
                 User programmer = (User)lstListaProgramadores.Items[index];
-                var prog = context.Programmers.Find(programmer.Id);
+                var prog = context.Programmers.Include(p => p.IdManager).FirstOrDefault(p => p.Id == programmer.Id);
 
                 txtIdProg.Text = prog.Id.ToString();
                 txtNomeProg.Text = prog.Name;
@@ -280,6 +383,20 @@ namespace iTasks
 
         }
 
+        private void txtNomeGestor_Enter(object sender, EventArgs e)
+        {
+            if (txtIdGestor.Text == "")
+            {
+                txtIdGestor.Text = FindAvailableID().ToString();
+            }
+        }
 
+        private void txtNomeProg_Enter(object sender, EventArgs e)
+        {
+            if (txtIdProg.Text == "")
+            {
+                txtIdProg.Text = FindAvailableID().ToString();
+            }
+        }
     }
 }
