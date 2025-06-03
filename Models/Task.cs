@@ -45,7 +45,7 @@ namespace iTasks.Models
 
         public override string ToString()
         {
-            return Description + " - " + "IdTypeTask:" + IdTypeTask + "-" + "Realizador:" + IdProgrammer;
+            return Description + " - " + "IdTypeTask:" + IdTypeTask + "-" + "Programador:" + IdProgrammer;
         }
     }
 }

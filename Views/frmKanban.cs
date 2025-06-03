@@ -24,12 +24,8 @@ namespace iTasks
                 {
                     context.Tasks.Add(new Models.Task(1, 1, "1", "Exemplo de Task", DateTime.Now,DateTime.Now,1,21,DateTime.Now,DateTime.Now,DateTime.Now,"ToDo"));
                     context.SaveChanges();
-
-
-                    UpdateTypeTaskList();
-                  
-
                 }
+                UpdateTypeTaskList();
             }
 
         }
@@ -44,7 +40,10 @@ namespace iTasks
             }
         }
 
-
+        private void frmKanban_Load(object sender, EventArgs e)
+        {
+           
+        }
 
 
         private void buttonNewTask_Click(object sender, EventArgs e)
@@ -86,6 +85,22 @@ namespace iTasks
         private void frmKanban_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void lstTodo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int index = lstTodo.SelectedIndex;
+            if (index == -1) return ;
+
+            iTasks.Models.Task selectedTask = (iTasks.Models.Task)lstTodo.Items[index];
+
+
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
