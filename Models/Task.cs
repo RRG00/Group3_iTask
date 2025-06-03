@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace iTasks.Models
 {
@@ -13,7 +14,7 @@ namespace iTasks.Models
         public int IdManager { get; set; }
         public int IdProgrammer { get; set; }
         public string OrderExecution { get; set; }
-        public char Description { get; set; }
+        public string Description { get; set; }
         public DateTime DateStart { get; set; }
         public  DateTime DateEnd { get; set; }
         public int IdTypeTask { get; set; }
@@ -26,7 +27,7 @@ namespace iTasks.Models
         {
 
         }
-        public Task(int idManager, int idProgrammer, string orderExecution, char description, DateTime dateStart, DateTime dateEnd, int idTypeTask, int storyPoints, DateTime realTimeStart, DateTime realTimeEnd, DateTime creationTime, string currentState)
+        public Task(int idManager, int idProgrammer, string orderExecution, string description, DateTime dateStart, DateTime dateEnd, int idTypeTask, int storyPoints, DateTime realTimeStart, DateTime realTimeEnd, DateTime creationTime, string currentState)
         {
             IdManager = idManager;
             IdProgrammer = idProgrammer;
@@ -40,6 +41,11 @@ namespace iTasks.Models
             RealTimeEnd = realTimeEnd;
             CreationTime = creationTime;
             CurrentState = currentState;
+        }
+
+        public override string ToString()
+        {
+            return Description + " - " + "IdTypeTask:" + IdTypeTask + "-" + "Realizador:" + IdProgrammer;
         }
     }
 }

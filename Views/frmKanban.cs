@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,15 +13,45 @@ namespace iTasks
 {
     public partial class frmKanban : Form
     {
+       
         public frmKanban()
         {
             InitializeComponent();
+
+            using (ITaskContext context = new ITaskContext())
+            {
+                if (context.Tasks.Count() == 0)
+                {
+                    context.Tasks.Add(new Models.Task(1, 1, "1", "Exemplo de Task", DateTime.Now,DateTime.Now,1,21,DateTime.Now,DateTime.Now,DateTime.Now,"ToDo"));
+                    context.SaveChanges();
+
+
+                    UpdateTypeTaskList();
+                  
+
+                }
+            }
+
         }
+
+       
+        public void UpdateTypeTaskList()
+        {
+            using (var ItaskContext = new ITaskContext())
+            {
+                lstTodo.DataSource = null;
+                lstTodo.DataSource = ItaskContext.Tasks.ToList();
+            }
+        }
+
+
+
 
         private void buttonNewTask_Click(object sender, EventArgs e)
         {
             Form newForm = new frmDetalhesTarefa();
             newForm.ShowDialog();
+
         }
 
         private void buttonNewUsers_Click(object sender, EventArgs e)
