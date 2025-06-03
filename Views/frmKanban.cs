@@ -32,6 +32,7 @@ namespace iTasks
             }
 
             UpdateStateTaskList();
+
         }
         
 
@@ -48,27 +49,24 @@ namespace iTasks
         {
             using (var ItaskContext = new ITaskContext())
             {
-                    listaToDo = ItaskContext.Tasks.Where(t => t.CurrentState == "ToDo").ToList();
-                    listaDoing = ItaskContext.Tasks.Where(t => t.CurrentState == "Doing").ToList();
-                    listaDone = ItaskContext.Tasks.Where(t => t.CurrentState == "Done").ToList();
+                listaToDo = ItaskContext.Tasks.Where(t => t.CurrentState == "ToDo").ToList();
+                listaDoing = ItaskContext.Tasks.Where(t => t.CurrentState == "Doing").ToList();
+                listaDone = ItaskContext.Tasks.Where(t => t.CurrentState == "Done").ToList();
 
-                    lstTodo.DataSource = null;
-                    lstTodo.DataSource = listaToDo;
+                lstTodo.DataSource = null;
+                lstTodo.DataSource = listaToDo;
+                lstTodo.SelectedIndex = -1;
+                   
 
-                    lstDoing.DataSource = null;
-                    lstDoing.DataSource = listaDoing;
+                lstDoing.DataSource = null;
+                lstDoing.DataSource = listaDoing;
+                lstDoing.SelectedIndex = -1;
 
-                    lstDone.DataSource = null;
-                    lstDone.DataSource = listaDone;
-                }
+                lstDone.DataSource = null;
+                lstDone.DataSource = listaDone;
+                lstDone.SelectedIndex = -1;
             }
-
-
-
-        private void frmKanban_Load(object sender, EventArgs e)
-        {
-
-        }
+            }
 
 
         private void buttonNewTask_Click(object sender, EventArgs e)
@@ -112,14 +110,13 @@ namespace iTasks
             Application.Exit();
         }
 
-        private void lstTodo_SelectedIndexChanged(object sender, EventArgs e)
+        public void lstTodo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int index = lstTodo.SelectedIndex;
-            if (index == -1) return;
-
-            iTasks.Models.Task selectedTask = (iTasks.Models.Task)lstTodo.Items[index];
-
-
+            if (lstTodo.SelectedIndex != -1)
+            {
+                lstDoing.ClearSelected();
+                lstDone.ClearSelected();
+            }
 
         }
 
@@ -238,5 +235,8 @@ namespace iTasks
                 MessageBox.Show("Selecione uma tarefa em 'Done' para voltar para 'Doing'.");
             }
         }
+
     }
+
+
 }
