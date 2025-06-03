@@ -50,6 +50,7 @@
             this.buttonNewTask = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btPrevisao = new System.Windows.Forms.Button();
+            this.buttonDoneDoing = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -128,6 +129,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ficheiroToolStripMenuItem,
@@ -227,6 +229,7 @@
             this.btSetDone.TabIndex = 6;
             this.btSetDone.Text = "Terminar Tarefa >>";
             this.btSetDone.UseVisualStyleBackColor = true;
+            this.btSetDone.Click += new System.EventHandler(this.btSetDone_Click);
             // 
             // btSetTodo
             // 
@@ -271,11 +274,23 @@
             this.btPrevisao.Text = "Ver Previsão de Conclusão";
             this.btPrevisao.UseVisualStyleBackColor = true;
             // 
+            // buttonDoneDoing
+            // 
+            this.buttonDoneDoing.Location = new System.Drawing.Point(1112, 793);
+            this.buttonDoneDoing.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonDoneDoing.Name = "buttonDoneDoing";
+            this.buttonDoneDoing.Size = new System.Drawing.Size(276, 90);
+            this.buttonDoneDoing.TabIndex = 11;
+            this.buttonDoneDoing.Text = "Button para apagar(este botao é para mandar a task do Done para o ToDo)";
+            this.buttonDoneDoing.UseVisualStyleBackColor = true;
+            this.buttonDoneDoing.Click += new System.EventHandler(this.buttonDoneDoing_Click);
+            // 
             // frmKanban
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1414, 912);
+            this.Controls.Add(this.buttonDoneDoing);
             this.Controls.Add(this.btPrevisao);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonNewTask);
@@ -326,5 +341,6 @@
         private System.Windows.Forms.Button buttonNewTask;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btPrevisao;
+        private System.Windows.Forms.Button buttonDoneDoing;
     }
 }
