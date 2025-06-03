@@ -202,7 +202,7 @@ namespace iTasks
             Department? department = cbDepartamento.SelectedItem != null ? (Department?)cbDepartamento.SelectedItem : null;
             bool manageUsers = chkGereUtilizadores.Checked;
 
-            // Validations
+            // Validações Managers
             if (managerSelect == null) errors.Add("Por favor selecione um manager");
             if (string.IsNullOrWhiteSpace(name)) errors.Add("Name é obrigatório");
             if (string.IsNullOrWhiteSpace(username)) errors.Add("Username é obrigatório");
