@@ -10,6 +10,10 @@ namespace iTasks.Models
 {
     public class Task
     {
+        private int orderExecution;
+        private DateTime start;
+        private DateTime end;
+
         public int Id { get; set; }
         public int IdManager { get; set; }
         public int IdProgrammer { get; set; }
@@ -41,6 +45,18 @@ namespace iTasks.Models
             RealTimeEnd = realTimeEnd;
             CreationTime = creationTime;
             CurrentState = currentState;
+        }
+
+        public Task(string description, int orderExecution, int storyPoints, int idTypeTask, int idManager, int idProgrammer, DateTime start, DateTime end)
+        {
+            Description = description;
+            this.orderExecution = orderExecution;
+            StoryPoints = storyPoints;
+            IdTypeTask = idTypeTask;
+            IdManager = idManager;
+            IdProgrammer = idProgrammer;
+            this.start = start;
+            this.end = end;
         }
 
         public override string ToString()
