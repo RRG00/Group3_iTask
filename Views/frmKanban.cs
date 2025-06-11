@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iTasks.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,10 +17,12 @@ namespace iTasks
         private List<iTasks.Models.Task> listaToDo;
         private List<iTasks.Models.Task> listaDoing;
         private List<iTasks.Models.Task> listaDone;
+        private User user;
 
-        public frmKanban()
+        public frmKanban(User _user)
         {
-          
+            user = _user;
+
             InitializeComponent();
 
             using (ITaskContext context = new ITaskContext())
@@ -73,7 +76,7 @@ namespace iTasks
 
         private void buttonNewTask_Click(object sender, EventArgs e)
         {
-            Form newForm = new frmDetalhesTarefa();
+            Form newForm = new frmDetalhesTarefa(user);
             newForm.ShowDialog();
 
         }

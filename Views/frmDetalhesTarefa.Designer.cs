@@ -141,6 +141,7 @@
             this.cbTipoTarefa.Name = "cbTipoTarefa";
             this.cbTipoTarefa.Size = new System.Drawing.Size(311, 21);
             this.cbTipoTarefa.TabIndex = 12;
+            this.cbTipoTarefa.SelectedIndexChanged += new System.EventHandler(this.cbTipoTarefa_SelectedIndexChanged);
             // 
             // dtInicio
             // 
@@ -266,6 +267,7 @@
             this.btGravar.TabIndex = 28;
             this.btGravar.Text = "Gravar Dados";
             this.btGravar.UseVisualStyleBackColor = true;
+            this.btGravar.Click += new System.EventHandler(this.btGravar_Click);
             // 
             // btFechar
             // 

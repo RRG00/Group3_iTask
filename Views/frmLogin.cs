@@ -25,7 +25,7 @@ namespace iTasks
         {
             string name = txtUsername.Text;
             string password = txtPassword.Text;
-            Form secondForm = new frmKanban();
+            
 
 
             using (var dbContext = new ITaskContext())
@@ -36,7 +36,7 @@ namespace iTasks
                 if (user != null)
                 {
                     MessageBox.Show("Login efetuado com sucesso!");
-                    secondForm = new frmKanban();
+                    Form secondForm = new frmKanban(user);
                     Hide();
                     secondForm.ShowDialog();
                 }

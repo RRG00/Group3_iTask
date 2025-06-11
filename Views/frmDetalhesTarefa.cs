@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -67,8 +68,8 @@ namespace iTasks
             int OrderExecution = int.Parse(txtOrdem.Text);
             int StoryPoints  = int.Parse(txtStoryPoints.Text);
             int idManager = CurrentUser.Id;
-            int idTypeTask = TypeTask.Id;
-            int idProgrammer = Programmer.Id;
+            int idTypeTask = cbTipoTarefa.SelectedItem is TypeTask selectedTypeTask ? selectedTypeTask.Id : 0;
+            int idProgrammer = cbProgramador.SelectedItem is Programmer selectedProgrammer ? selectedProgrammer.Id : 0;
             DateTime start = dtInicio.Value;
             DateTime end = dtFim.Value;
 
@@ -76,7 +77,9 @@ namespace iTasks
 
             controller.CreateTask(Description, OrderExecution, StoryPoints, idManager, idTypeTask, idProgrammer, start, end);
 
-            
+            MessageBox.Show("Tarefa criada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            this.Close();
         }
 
         public void updateFields()
@@ -93,6 +96,9 @@ namespace iTasks
             this.Close();
         }
 
-      
+        private void cbTipoTarefa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
