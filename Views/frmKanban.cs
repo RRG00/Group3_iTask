@@ -29,7 +29,7 @@ namespace iTasks
             {
                 if (!context.Tasks.Any())
                 {
-                    context.Tasks.Add(new Models.Task(1, 1, "1", "Exemplo de Task", DateTime.Now, DateTime.Now, 1, 21, DateTime.Now, DateTime.Now, DateTime.Now, "ToDo"));
+                    context.Tasks.Add(new Models.Task(1, 1, 1, "Exemplo de Task", DateTime.Now, DateTime.Now, 1, 21, DateTime.Now, DateTime.Now, DateTime.Now, "ToDo"));
                     context.SaveChanges();
                 }
             }

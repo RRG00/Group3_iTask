@@ -75,8 +75,11 @@ namespace iTasks
 
             TaskController controller = new TaskController();
 
-            controller.CreateTask(Description, OrderExecution, StoryPoints, idManager, idTypeTask, idProgrammer, start, end);
-
+            bool success = controller.CreateTask(Description, OrderExecution, StoryPoints, idManager, idTypeTask, idProgrammer, start, end);
+            if (success == false)
+            {
+                return;
+            }
             MessageBox.Show("Tarefa criada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             this.Close();
@@ -97,6 +100,11 @@ namespace iTasks
         }
 
         private void cbTipoTarefa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtInicio_ValueChanged(object sender, EventArgs e)
         {
 
         }
