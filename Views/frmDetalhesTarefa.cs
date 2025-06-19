@@ -65,13 +65,32 @@ namespace iTasks
         private void btGravar_Click(object sender, EventArgs e)
         {
             string Description = txtDesc.Text;
-            int OrderExecution = int.Parse(txtOrdem.Text);
-            int StoryPoints  = int.Parse(txtStoryPoints.Text);
+            int OrderExecution;
+            if (!int.TryParse(txtOrdem.Text, out OrderExecution) || OrderExecution <= 0)
+            {
+                MessageBox.Show("A ordem de execução deve ser um número inteiro maior que zero.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            int StoryPoints;
+            if (!int.TryParse(txtStoryPoints.Text, out StoryPoints) || StoryPoints <= 0)
+            {
+                MessageBox.Show("Os Story Points devem ser um número inteiro maior que zero.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             int idManager = CurrentUser.Id;
             int idTypeTask = cbTipoTarefa.SelectedItem is TypeTask selectedTypeTask ? selectedTypeTask.Id : 0;
             int idProgrammer = cbProgramador.SelectedItem is Programmer selectedProgrammer ? selectedProgrammer.Id : 0;
             DateTime start = dtInicio.Value;
             DateTime end = dtFim.Value;
+
+            // ---- VALIDAÇÃO DAS DATAS ----
+            if (start >= end)
+            {
+                MessageBox.Show("A data de início deve ser anterior à data de fim!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            // -----------------------------
 
             TaskController controller = new TaskController();
 
@@ -84,6 +103,7 @@ namespace iTasks
 
             this.Close();
         }
+
 
         public void updateFields()
         {

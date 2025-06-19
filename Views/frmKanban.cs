@@ -7,8 +7,8 @@ using System.Drawing;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace iTasks
 {
@@ -24,16 +24,6 @@ namespace iTasks
             user = _user;
 
             InitializeComponent();
-
-            using (ITaskContext context = new ITaskContext())
-            {
-                if (!context.Tasks.Any())
-                {
-                    context.Tasks.Add(new Models.Task(1, 1, 1, "Exemplo de Task", DateTime.Now, DateTime.Now, 1, 21, DateTime.Now, DateTime.Now, DateTime.Now, "ToDo"));
-                    context.SaveChanges();
-                }
-            }
-
             UpdateStateTaskList();
 
         }
@@ -59,7 +49,6 @@ namespace iTasks
                 lstTodo.DataSource = null;
                 lstTodo.DataSource = listaToDo;
                 lstTodo.SelectedIndex = -1;
-                   
 
                 lstDoing.DataSource = null;
                 lstDoing.DataSource = listaDoing;
@@ -69,13 +58,15 @@ namespace iTasks
                 lstDone.DataSource = listaDone;
                 lstDone.SelectedIndex = -1;
             }
-            }
+        }
+
 
 
         private void buttonNewTask_Click(object sender, EventArgs e)
         {
             Form newForm = new frmDetalhesTarefa(user);
             newForm.ShowDialog();
+            UpdateStateTaskList();
 
         }
 
@@ -238,6 +229,50 @@ namespace iTasks
                 MessageBox.Show("Selecione uma tarefa em 'Done' para voltar para 'Doing'.");
             }
         }
+
+        private void deleteTask_Click(object sender, EventArgs e)
+        {
+            // Só permite apagar se for da lista ToDo
+            var tarefaSelecionada = lstTodo.SelectedItem as Task;
+            if (tarefaSelecionada == null)
+            {
+                MessageBox.Show("Só pode apagar tarefas da coluna 'ToDo'.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            var confirmResult = MessageBox.Show("Tem a certeza que quer apagar esta tarefa?",
+                                                "Confirmar Apagar",
+                                                MessageBoxButtons.YesNo,
+                                                MessageBoxIcon.Question);
+
+            if (confirmResult == DialogResult.No)
+                return;
+
+            try
+            {
+                using (var context = new ITaskContext())
+                {
+                    var tarefaBD = context.Tasks.FirstOrDefault(t => t.Id == tarefaSelecionada.Id);
+                    if (tarefaBD != null)
+                    {
+                        context.Tasks.Remove(tarefaBD);
+                        context.SaveChanges();
+                        MessageBox.Show("Tarefa apagada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tarefa não encontrada na base de dados.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erro ao apagar a tarefa: " + ex.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            UpdateStateTaskList();
+        }
+
 
     }
 

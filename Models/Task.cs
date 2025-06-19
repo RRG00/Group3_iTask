@@ -54,13 +54,16 @@ namespace iTasks.Models
             IdTypeTask = idTypeTask;
             IdManager = idManager;
             IdProgrammer = idProgrammer;
-
-            Console.WriteLine($"Start: {start}");
-            Console.WriteLine($"End:   {end}");
-
             DateStart = start;
             DateEnd = end;
+
+            CreationTime = DateTime.Now;
+            CurrentState = "ToDo"; 
+
+            RealTimeStart = DateTime.Now; 
+            RealTimeEnd = DateTime.Now;   
         }
+
 
 
         public override string ToString()
