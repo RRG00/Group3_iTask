@@ -21,5 +21,29 @@ namespace iTasks
         {
             this.Close();
         }
+
+        private void frmConsultarTarefasConcluidas_Load(object sender, EventArgs e)
+        {
+            using (var context = new ITaskContext())
+            {
+                var tarefasDb = context.Tasks
+                    .Where(t => t.CurrentState == "Done")
+                    .ToList(); // Busca para memória primeiro!
+
+                var tarefas = tarefasDb
+                    .Select(t => new
+                    {
+                        Descricao = t.Description,
+                        Programador = context.Programmers.FirstOrDefault(p => p.Id == t.IdProgrammer)?.Name ?? "N/A",
+                        TempoPrevisto = (t.DateEnd - t.DateStart).Days,
+                        TempoReal = (t.RealTimeEnd - t.RealTimeStart).Days
+                    })
+                    .ToList();
+
+                dataGridTarefasConlcuidas.DataSource = tarefas;
+            }
+        }
     }
+
 }
+

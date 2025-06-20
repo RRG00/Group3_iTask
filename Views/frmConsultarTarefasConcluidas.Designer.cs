@@ -30,7 +30,9 @@
         {
             this.btFechar = new System.Windows.Forms.Button();
             this.gvTarefasConcluidas = new System.Windows.Forms.DataGridView();
+            this.dataGridTarefasConlcuidas = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.gvTarefasConcluidas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTarefasConlcuidas)).BeginInit();
             this.SuspendLayout();
             // 
             // btFechar
@@ -54,17 +56,30 @@
             this.gvTarefasConcluidas.Size = new System.Drawing.Size(1539, 608);
             this.gvTarefasConcluidas.TabIndex = 31;
             // 
+            // dataGridTarefasConlcuidas
+            // 
+            this.dataGridTarefasConlcuidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridTarefasConlcuidas.Location = new System.Drawing.Point(18, 18);
+            this.dataGridTarefasConlcuidas.Name = "dataGridTarefasConlcuidas";
+            this.dataGridTarefasConlcuidas.RowHeadersWidth = 62;
+            this.dataGridTarefasConlcuidas.RowTemplate.Height = 28;
+            this.dataGridTarefasConlcuidas.Size = new System.Drawing.Size(1539, 608);
+            this.dataGridTarefasConlcuidas.TabIndex = 33;
+            // 
             // frmConsultarTarefasConcluidas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1578, 692);
+            this.Controls.Add(this.dataGridTarefasConlcuidas);
             this.Controls.Add(this.btFechar);
             this.Controls.Add(this.gvTarefasConcluidas);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmConsultarTarefasConcluidas";
             this.Text = "iTask - Consultar tarefas concluidas";
+            this.Load += new System.EventHandler(this.frmConsultarTarefasConcluidas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gvTarefasConcluidas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTarefasConlcuidas)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -73,5 +88,6 @@
 
         private System.Windows.Forms.Button btFechar;
         private System.Windows.Forms.DataGridView gvTarefasConcluidas;
+        private System.Windows.Forms.DataGridView dataGridTarefasConlcuidas;
     }
 }
