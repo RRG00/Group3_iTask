@@ -84,13 +84,12 @@ namespace iTasks
             DateTime start = dtInicio.Value;
             DateTime end = dtFim.Value;
 
-            // ---- VALIDAÇÃO DAS DATAS ----
+            // Validações
             if (start >= end)
             {
                 MessageBox.Show("A data de início deve ser anterior à data de fim!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            // -----------------------------
 
             TaskController controller = new TaskController();
 

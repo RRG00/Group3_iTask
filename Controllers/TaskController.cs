@@ -19,7 +19,7 @@ namespace iTasks.Controllers
     DateTime start,
     DateTime end)
         {
-            // Validação dos dados do utilizador
+            // Validações
             if (string.IsNullOrWhiteSpace(Description))
             {
                 MessageBox.Show("A descrição não pode estar vazia.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -56,7 +56,7 @@ namespace iTasks.Controllers
                 return false;
             }
 
-            // Tenta gravar a tarefa
+            
             try
             {
                 using (var ItaskContext = new ITaskContext())
@@ -69,8 +69,7 @@ namespace iTasks.Controllers
             }
             catch
             {
-                // Não mostra pop-up ao utilizador para erros técnicos inesperados
-                // (Opcional: podes registar o erro num ficheiro de log para análise futura)
+              
                 return false;
             }
         }
