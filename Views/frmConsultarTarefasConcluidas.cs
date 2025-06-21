@@ -28,7 +28,7 @@ namespace iTasks
             {
                 var tarefasDb = context.Tasks
                     .Where(t => t.CurrentState == "Done")
-                    .ToList(); // Busca para memória primeiro!
+                    .ToList();
 
                 var tarefas = tarefasDb
                     .Select(t => new
