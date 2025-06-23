@@ -129,12 +129,11 @@ namespace iTasks
 
                 using (var context = new ITaskContext())
                 {
-                    // Busca a tarefa pelo ID no contexto atual
+
                     var taskDb = context.Tasks.Find(task.Id);
                     if (taskDb != null)
                     {
                         taskDb.CurrentState = "Doing";
-                        // Atualiza a Data Real de Início quando passa para Doing
                         taskDb.RealTimeStart = DateTime.Now;
                         context.SaveChanges();
                     }
@@ -165,7 +164,6 @@ namespace iTasks
                     if (taskDb != null)
                     {
                         taskDb.CurrentState = "ToDo";
-                        // Opcional: Limpar a data real de início quando volta para ToDo
                         taskDb.RealTimeStart = null;
                         context.SaveChanges();
                     }
@@ -195,7 +193,6 @@ namespace iTasks
                     if (taskDb != null)
                     {
                         taskDb.CurrentState = "Done";
-                        // Atualiza a Data Real de Fim quando passa para Done
                         taskDb.RealTimeEnd = DateTime.Now;
                         context.SaveChanges();
                     }
@@ -218,8 +215,7 @@ namespace iTasks
                     var taskDb = context.Tasks.Find(task.Id);
                     if (taskDb != null)
                     {
-                        taskDb.CurrentState = "Doing";
-                        // Limpar a data de fim quando volta para Doing
+                        taskDb.CurrentState = "Doing";  
                         taskDb.RealTimeEnd = null;
                         context.SaveChanges();
                     }
@@ -239,7 +235,6 @@ namespace iTasks
 
         private void deleteTask_Click(object sender, EventArgs e)
         {
-            // Só permite apagar se for da lista ToDo
             var tarefaSelecionada = lstTodo.SelectedItem as Task;
             if (tarefaSelecionada == null)
             {
