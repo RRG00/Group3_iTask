@@ -22,8 +22,8 @@ namespace iTasks.Models
         public  DateTime DateEnd { get; set; }
         public int IdTypeTask { get; set; }
         public int StoryPoints { get; set; }
-        public DateTime RealTimeStart { get; set; }
-        public DateTime RealTimeEnd { get; set; }
+        public DateTime? RealTimeStart { get; set; }
+        public DateTime? RealTimeEnd { get; set; }
         public DateTime CreationTime { get; set; }
         public string CurrentState  { get; set; }
         public Task()
@@ -60,8 +60,8 @@ namespace iTasks.Models
             CreationTime = DateTime.Now;
             CurrentState = "ToDo"; 
 
-            RealTimeStart = DateTime.Now; 
-            RealTimeEnd = DateTime.Now;   
+            RealTimeStart = null; 
+            RealTimeEnd = null;   
         }
 
 

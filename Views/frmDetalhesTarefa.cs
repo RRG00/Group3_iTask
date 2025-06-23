@@ -22,6 +22,8 @@ namespace iTasks
 
         private Programmer Programmer;
 
+        private Task tarefaAtual;
+
         public frmDetalhesTarefa()
         {
             InitializeComponent();
@@ -30,6 +32,45 @@ namespace iTasks
 
             updateFields();
         }
+        public frmDetalhesTarefa(Task tarefa, bool somenteLeitura = false)
+        {
+            InitializeComponent();
+            tarefaAtual = tarefa;
+            ItaskContext = new ITaskContext();
+            updateFields();
+
+  
+            if (tarefa != null)
+            {
+                txtDesc.Text = tarefa.Description;
+                txtOrdem.Text = tarefa.OrderExecution.ToString();
+                txtStoryPoints.Text = tarefa.StoryPoints.ToString();
+
+                dtInicio.Value = tarefa.DateStart;
+                dtFim.Value = tarefa.DateEnd;
+
+ 
+                cbTipoTarefa.SelectedValue = tarefa.IdTypeTask;
+                cbProgramador.SelectedValue = tarefa.IdProgrammer;
+            }
+            if (somenteLeitura)
+            {
+                txtDesc.ReadOnly = true;
+                txtOrdem.ReadOnly = true;
+                txtStoryPoints.ReadOnly = true;
+
+                cbTipoTarefa.Enabled = false;
+                cbProgramador.Enabled = false;
+
+                dtInicio.Enabled = false;
+                dtFim.Enabled = false;
+
+                btGravar.Visible = false;
+                this.Text = "Detalhes da Tarefa (Somente Leitura)";
+            }
+        }
+
+
 
         public frmDetalhesTarefa(User user)
         {
@@ -107,11 +148,17 @@ namespace iTasks
         public void updateFields()
         {
             using (var itaskContext = new ITaskContext())
-            { 
+            {
                 cbTipoTarefa.DataSource = itaskContext.TipeTasks.ToList();
+                cbTipoTarefa.DisplayMember = "Name"; 
+                cbTipoTarefa.ValueMember = "Id";     
+
                 cbProgramador.DataSource = itaskContext.Programmers.ToList();
+                cbProgramador.DisplayMember = "Name"; 
+                cbProgramador.ValueMember = "Id";     
             }
         }
+
 
         private void btFechar_Click(object sender, EventArgs e)
         {

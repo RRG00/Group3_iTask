@@ -36,7 +36,9 @@ namespace iTasks
                         Descricao = t.Description,
                         Programador = context.Programmers.FirstOrDefault(p => p.Id == t.IdProgrammer)?.Name ?? "N/A",
                         TempoPrevisto = (t.DateEnd - t.DateStart).Days,
-                        TempoReal = (t.RealTimeEnd - t.RealTimeStart).Days
+                        TempoReal = t.RealTimeEnd.HasValue && t.RealTimeStart.HasValue
+                                    ? (t.RealTimeEnd.Value - t.RealTimeStart.Value).Days: (int?)null
+
                     })
                     .ToList();
 

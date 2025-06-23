@@ -10,6 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 
 
+
 namespace iTasks
 {
     public partial class frmKanban : Form
@@ -18,7 +19,7 @@ namespace iTasks
         private List<iTasks.Models.Task> listaDoing;
         private List<iTasks.Models.Task> listaDone;
         private User user;
-
+    
         public frmKanban(User _user)
         {
             user = _user;
@@ -27,8 +28,6 @@ namespace iTasks
             UpdateStateTaskList();
 
         }
-        
-
 
         public void UpdateTypeTaskList()
         {
@@ -38,6 +37,7 @@ namespace iTasks
                 lstTodo.DataSource = ItaskContext.Tasks.ToList();
             }
         }
+
         public void UpdateStateTaskList()
         {
             using (var ItaskContext = new ITaskContext())
@@ -273,6 +273,15 @@ namespace iTasks
             UpdateStateTaskList();
         }
 
+        private void lstDoing_DoubleClick(object sender, EventArgs e)
+        {
+            if (lstDoing.SelectedItem != null)
+            {
+                var tarefaSelecionada = (iTasks.Models.Task)lstDoing.SelectedItem;
+                frmDetalhesTarefa detalhesForm = new frmDetalhesTarefa(tarefaSelecionada, true);
+                detalhesForm.ShowDialog();
+            }
+        }
 
     }
 
