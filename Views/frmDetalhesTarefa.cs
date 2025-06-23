@@ -32,6 +32,7 @@ namespace iTasks
 
             updateFields();
         }
+        // No construtor que recebe uma tarefa, adicionar estas linhas após as existentes:
         public frmDetalhesTarefa(Task tarefa, bool somenteLeitura = false)
         {
             InitializeComponent();
@@ -39,7 +40,6 @@ namespace iTasks
             ItaskContext = new ITaskContext();
             updateFields();
 
-  
             if (tarefa != null)
             {
                 txtDesc.Text = tarefa.Description;
@@ -49,10 +49,29 @@ namespace iTasks
                 dtInicio.Value = tarefa.DateStart;
                 dtFim.Value = tarefa.DateEnd;
 
- 
+                // Preencher os campos de data real se existirem
+                if (tarefa.RealTimeStart.HasValue)
+                {
+                    txtDataRealini.Text = tarefa.RealTimeStart.Value.ToString("dd/MM/yyyy HH:mm");
+                }
+                else
+                {
+                    txtDataRealini.Text = "";
+                }
+
+                if (tarefa.RealTimeEnd.HasValue)
+                {
+                    txtdataRealFim.Text = tarefa.RealTimeEnd.Value.ToString("dd/MM/yyyy HH:mm");
+                }
+                else
+                {
+                    txtdataRealFim.Text = "";
+                }
+
                 cbTipoTarefa.SelectedValue = tarefa.IdTypeTask;
                 cbProgramador.SelectedValue = tarefa.IdProgrammer;
             }
+
             if (somenteLeitura)
             {
                 txtDesc.ReadOnly = true;
