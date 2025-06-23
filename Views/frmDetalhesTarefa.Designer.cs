@@ -178,6 +178,7 @@
             // 
             // txtEstado
             // 
+            this.txtEstado.Enabled = false;
             this.txtEstado.Location = new System.Drawing.Point(426, 12);
             this.txtEstado.Name = "txtEstado";
             this.txtEstado.ReadOnly = true;
@@ -195,6 +196,7 @@
             // 
             // txtDataRealini
             // 
+            this.txtDataRealini.Enabled = false;
             this.txtDataRealini.Location = new System.Drawing.Point(132, 42);
             this.txtDataRealini.Name = "txtDataRealini";
             this.txtDataRealini.ReadOnly = true;
@@ -212,6 +214,7 @@
             // 
             // txtdataRealFim
             // 
+            this.txtdataRealFim.Enabled = false;
             this.txtdataRealFim.Location = new System.Drawing.Point(132, 68);
             this.txtdataRealFim.Name = "txtdataRealFim";
             this.txtdataRealFim.ReadOnly = true;
@@ -229,6 +232,7 @@
             // 
             // txtDataCriacao
             // 
+            this.txtDataCriacao.Enabled = false;
             this.txtDataCriacao.Location = new System.Drawing.Point(426, 42);
             this.txtDataCriacao.Name = "txtDataCriacao";
             this.txtDataCriacao.ReadOnly = true;

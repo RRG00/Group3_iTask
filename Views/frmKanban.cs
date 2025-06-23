@@ -132,6 +132,8 @@ namespace iTasks
                     if (taskDb != null)
                     {
                         taskDb.CurrentState = "Doing";
+                        // Atualiza a Data Real de Início quando passa para Doing
+                        taskDb.RealTimeStart = DateTime.Now;
                         context.SaveChanges();
                     }
                     else
