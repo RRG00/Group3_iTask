@@ -19,16 +19,18 @@ namespace iTasks
         private List<iTasks.Models.Task> listaDoing;
         private List<iTasks.Models.Task> listaDone;
         private User user;
-    
+
         public frmKanban(User _user)
         {
             user = _user;
 
+            string username = user.ToString();
+
             InitializeComponent();
             UpdateStateTaskList();
 
+            label1.Text = "Bem vindo: " + username;
         }
-
         public void UpdateTypeTaskList()
         {
             using (var ItaskContext = new ITaskContext())
@@ -132,6 +134,8 @@ namespace iTasks
                     if (taskDb != null)
                     {
                         taskDb.CurrentState = "Doing";
+                        // Atualiza a Data Real de Início quando passa para Doing
+                        taskDb.RealTimeStart = DateTime.Now;
                         context.SaveChanges();
                     }
                     else
@@ -148,6 +152,7 @@ namespace iTasks
             }
         }
 
+
         private void btSetTodo_Click(object sender, EventArgs e)
         {
             if (lstDoing.SelectedItem != null)
@@ -160,6 +165,8 @@ namespace iTasks
                     if (taskDb != null)
                     {
                         taskDb.CurrentState = "ToDo";
+                        // Opcional: Limpar a data real de início quando volta para ToDo
+                        taskDb.RealTimeStart = null;
                         context.SaveChanges();
                     }
                     else
@@ -188,15 +195,13 @@ namespace iTasks
                     if (taskDb != null)
                     {
                         taskDb.CurrentState = "Done";
+                        // Atualiza a Data Real de Fim quando passa para Done
+                        taskDb.RealTimeEnd = DateTime.Now;
                         context.SaveChanges();
                     }
                 }
 
                 UpdateStateTaskList();
-            }
-            else
-            {
-                MessageBox.Show("Selecione uma tarefa em 'Doing' para terminar a tarefa.");
             }
         }
 
@@ -214,6 +219,8 @@ namespace iTasks
                     if (taskDb != null)
                     {
                         taskDb.CurrentState = "Doing";
+                        // Limpar a data de fim quando volta para Doing
+                        taskDb.RealTimeEnd = null;
                         context.SaveChanges();
                     }
                     else
@@ -283,6 +290,26 @@ namespace iTasks
             }
         }
 
+        private void lstDone_DoubleClick(object sender, EventArgs e)
+        {
+
+            if (lstDone.SelectedItem != null)
+            {
+                var tarefaSelecionada = (iTasks.Models.Task)lstDone.SelectedItem;
+                frmDetalhesTarefa detalhesForm = new frmDetalhesTarefa(tarefaSelecionada, true);
+                detalhesForm.ShowDialog();
+            }
+        }
+
+        private void lstTodo_DoubleClick(object sender, EventArgs e)
+        {
+            if (lstTodo.SelectedItem != null)
+            {
+                var tarefaSelecionada = (iTasks.Models.Task)lstTodo.SelectedItem;
+                frmDetalhesTarefa detalhesForm = new frmDetalhesTarefa(tarefaSelecionada, true);
+                detalhesForm.ShowDialog();
+            }
+        }
     }
 
 

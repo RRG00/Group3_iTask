@@ -33,6 +33,7 @@ namespace iTasks
             updateFields();
         }
         // No construtor que recebe uma tarefa, adicionar estas linhas após as existentes:
+        // No construtor que recebe uma tarefa, adicionar estas linhas após as existentes:
         public frmDetalhesTarefa(Task tarefa, bool somenteLeitura = false)
         {
             InitializeComponent();
@@ -42,6 +43,10 @@ namespace iTasks
 
             if (tarefa != null)
             {
+                // Preencher os campos com os dados da tarefa
+                txtId.Text = tarefa.Id.ToString();
+                txtDataCriacao.Text = tarefa.CreationTime.ToString("dd/MM/yyyy HH:mm");
+                txtEstado.Text = tarefa.CurrentState;
                 txtDesc.Text = tarefa.Description;
                 txtOrdem.Text = tarefa.OrderExecution.ToString();
                 txtStoryPoints.Text = tarefa.StoryPoints.ToString();
