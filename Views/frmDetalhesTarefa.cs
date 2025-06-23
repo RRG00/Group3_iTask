@@ -32,8 +32,6 @@ namespace iTasks
 
             updateFields();
         }
-        // No construtor que recebe uma tarefa, adicionar estas linhas após as existentes:
-        // No construtor que recebe uma tarefa, adicionar estas linhas após as existentes:
         public frmDetalhesTarefa(Task tarefa, bool somenteLeitura = false)
         {
             InitializeComponent();
@@ -43,7 +41,7 @@ namespace iTasks
 
             if (tarefa != null)
             {
-                // Preencher os campos com os dados da tarefa
+
                 txtId.Text = tarefa.Id.ToString();
                 txtDataCriacao.Text = tarefa.CreationTime.ToString("dd/MM/yyyy HH:mm");
                 txtEstado.Text = tarefa.CurrentState;
@@ -54,7 +52,7 @@ namespace iTasks
                 dtInicio.Value = tarefa.DateStart;
                 dtFim.Value = tarefa.DateEnd;
 
-                // Preencher os campos de data real se existirem
+
                 if (tarefa.RealTimeStart.HasValue)
                 {
                     txtDataRealini.Text = tarefa.RealTimeStart.Value.ToString("dd/MM/yyyy HH:mm");
@@ -149,7 +147,7 @@ namespace iTasks
             DateTime start = dtInicio.Value;
             DateTime end = dtFim.Value;
 
-            // Validações
+
             if (start >= end)
             {
                 MessageBox.Show("A data de início deve ser anterior à data de fim!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);

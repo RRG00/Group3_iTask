@@ -19,7 +19,7 @@ namespace iTasks.Controllers
                 DateTime start,
                 DateTime end)
         {
-            // Validações
+
             if (string.IsNullOrWhiteSpace(Description))
             {
                 MessageBox.Show("A descrição não pode estar vazia.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
