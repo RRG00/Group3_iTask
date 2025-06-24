@@ -32,6 +32,35 @@ namespace iTasks
 
             label1.Text = "Bem vindo: " + username;
         }
+
+        private string GetUserRole(User user)
+        {
+            if (user is Manager)
+            {
+                return "Manager";
+            }
+            else if (user is Programmer)
+            {
+                return "Programmer";
+            }
+            else
+            {
+                return "Unknown";
+            }
+        }
+        private void frmKanban_Load(object sender, EventArgs e)
+        {
+            
+            string userRole = GetUserRole(user);
+            if (userRole == "Programmer")
+            {
+                buttonNewTask.Visible = false;
+                deleteTask.Visible = false;
+                exportarParaCSVToolStripMenuItem.Visible = false;
+                utilizadoresToolStripMenuItem.Visible = false;
+            }
+        }
+
         public void UpdateTypeTaskList()
         {
             using (var ItaskContext = new ITaskContext())

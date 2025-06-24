@@ -37,10 +37,9 @@
             // 
             // btFechar
             // 
-            this.btFechar.Location = new System.Drawing.Point(1401, 638);
-            this.btFechar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btFechar.Location = new System.Drawing.Point(934, 415);
             this.btFechar.Name = "btFechar";
-            this.btFechar.Size = new System.Drawing.Size(156, 35);
+            this.btFechar.Size = new System.Drawing.Size(104, 23);
             this.btFechar.TabIndex = 32;
             this.btFechar.Text = "Fechar";
             this.btFechar.UseVisualStyleBackColor = true;
@@ -49,33 +48,34 @@
             // gvTarefasConcluidas
             // 
             this.gvTarefasConcluidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvTarefasConcluidas.Location = new System.Drawing.Point(18, 18);
-            this.gvTarefasConcluidas.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.gvTarefasConcluidas.Location = new System.Drawing.Point(12, 12);
             this.gvTarefasConcluidas.Name = "gvTarefasConcluidas";
             this.gvTarefasConcluidas.RowHeadersWidth = 62;
-            this.gvTarefasConcluidas.Size = new System.Drawing.Size(1539, 608);
+            this.gvTarefasConcluidas.Size = new System.Drawing.Size(1026, 395);
             this.gvTarefasConcluidas.TabIndex = 31;
             // 
             // dataGridTarefasConlcuidas
             // 
             this.dataGridTarefasConlcuidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridTarefasConlcuidas.Location = new System.Drawing.Point(18, 18);
+            this.dataGridTarefasConlcuidas.Location = new System.Drawing.Point(12, 12);
+            this.dataGridTarefasConlcuidas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridTarefasConlcuidas.Name = "dataGridTarefasConlcuidas";
             this.dataGridTarefasConlcuidas.RowHeadersWidth = 62;
             this.dataGridTarefasConlcuidas.RowTemplate.Height = 28;
-            this.dataGridTarefasConlcuidas.Size = new System.Drawing.Size(1539, 608);
+            this.dataGridTarefasConlcuidas.Size = new System.Drawing.Size(1026, 395);
             this.dataGridTarefasConlcuidas.TabIndex = 33;
             // 
             // frmConsultarTarefasConcluidas
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1578, 692);
+            this.ClientSize = new System.Drawing.Size(1052, 450);
             this.Controls.Add(this.dataGridTarefasConlcuidas);
             this.Controls.Add(this.btFechar);
             this.Controls.Add(this.gvTarefasConcluidas);
-            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "frmConsultarTarefasConcluidas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "iTask - Consultar tarefas concluidas";
             this.Load += new System.EventHandler(this.frmConsultarTarefasConcluidas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gvTarefasConcluidas)).EndInit();

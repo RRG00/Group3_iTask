@@ -456,6 +456,7 @@
             this.Controls.Add(this.groupBox2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "frmGereUtilizadores";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "iTask - Formulário Utilizadores";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

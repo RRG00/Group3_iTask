@@ -333,7 +333,9 @@
             this.Controls.Add(this.cbProgramador);
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "frmDetalhesTarefa";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "iTask - Detalhe tarefas";
             this.ResumeLayout(false);
             this.PerformLayout();

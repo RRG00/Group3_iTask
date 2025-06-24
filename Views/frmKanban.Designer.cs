@@ -168,14 +168,14 @@
             // buttonNewUsers
             // 
             this.buttonNewUsers.Name = "buttonNewUsers";
-            this.buttonNewUsers.Size = new System.Drawing.Size(185, 22);
+            this.buttonNewUsers.Size = new System.Drawing.Size(187, 22);
             this.buttonNewUsers.Text = "Gerir Utilizadores";
             this.buttonNewUsers.Click += new System.EventHandler(this.buttonNewUsers_Click);
             // 
             // gerirTiposDeTarefasToolStripMenuItem
             // 
             this.gerirTiposDeTarefasToolStripMenuItem.Name = "gerirTiposDeTarefasToolStripMenuItem";
-            this.gerirTiposDeTarefasToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.gerirTiposDeTarefasToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.gerirTiposDeTarefasToolStripMenuItem.Text = "Gerir Tipos de Tarefas";
             this.gerirTiposDeTarefasToolStripMenuItem.Click += new System.EventHandler(this.gerirTiposDeTarefasToolStripMenuItem_Click);
             // 
@@ -191,14 +191,14 @@
             // buttonTaskDone
             // 
             this.buttonTaskDone.Name = "buttonTaskDone";
-            this.buttonTaskDone.Size = new System.Drawing.Size(172, 22);
+            this.buttonTaskDone.Size = new System.Drawing.Size(173, 22);
             this.buttonTaskDone.Text = "Tarefas Concluídas";
             this.buttonTaskDone.Click += new System.EventHandler(this.tarefasTerminadasToolStripMenuItem_Click);
             // 
             // buttonTaskDoing
             // 
             this.buttonTaskDoing.Name = "buttonTaskDoing";
-            this.buttonTaskDoing.Size = new System.Drawing.Size(172, 22);
+            this.buttonTaskDoing.Size = new System.Drawing.Size(173, 22);
             this.buttonTaskDoing.Text = "Tarefas em Curso";
             this.buttonTaskDoing.Click += new System.EventHandler(this.tarefasEmCursoToolStripMenuItem_Click);
             // 
@@ -301,8 +301,10 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmKanban";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "iTask - Form Kanban";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmKanban_FormClosed);
+            this.Load += new System.EventHandler(this.frmKanban_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
