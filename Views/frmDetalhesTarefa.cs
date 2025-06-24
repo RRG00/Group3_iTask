@@ -141,17 +141,28 @@ namespace iTasks
                 MessageBox.Show("Os Story Points devem ser um número inteiro maior que zero.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
             int idManager = CurrentUser.Id;
             int idTypeTask = cbTipoTarefa.SelectedItem is TypeTask selectedTypeTask ? selectedTypeTask.Id : 0;
             int idProgrammer = cbProgramador.SelectedItem is Programmer selectedProgrammer ? selectedProgrammer.Id : 0;
             DateTime start = dtInicio.Value;
             DateTime end = dtFim.Value;
 
-
             if (start >= end)
             {
                 MessageBox.Show("A data de início deve ser anterior à data de fim!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+
+            using (var context = new ITaskContext())
+            {
+                var existe = context.Tasks.Any(t => t.IdProgrammer == idProgrammer && t.OrderExecution == OrderExecution);
+
+                if (existe)
+                {
+                    MessageBox.Show("Já existe uma tarefa com essa ordem para este programador!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
             }
 
             TaskController controller = new TaskController();

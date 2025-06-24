@@ -123,84 +123,135 @@ namespace iTasks
 
         private void btSetDoing_Click(object sender, EventArgs e)
         {
-            if (lstTodo.SelectedItem != null)
-            {
-                var task = (iTasks.Models.Task)lstTodo.SelectedItem;
-
-                using (var context = new ITaskContext())
-                {
-
-                    var taskDb = context.Tasks.Find(task.Id);
-                    if (taskDb != null)
-                    {
-                        taskDb.CurrentState = "Doing";
-                        taskDb.RealTimeStart = DateTime.Now;
-                        context.SaveChanges();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Tarefa não encontrada no banco de dados.");
-                    }
-                }
-
-                UpdateStateTaskList();
-            }
-            else
+            if (lstTodo.SelectedItem == null)
             {
                 MessageBox.Show("Selecione uma tarefa para executar.");
+                return;
             }
+
+            var task = (iTasks.Models.Task)lstTodo.SelectedItem;
+
+            // Só pode mover as suas próprias tarefas
+            if (task.IdProgrammer != user.Id)
+            {
+                MessageBox.Show("Só pode mover as suas próprias tarefas!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (var context = new ITaskContext())
+            {
+                // Limite de 2 tarefas em Doing
+                int doingCount = context.Tasks.Count(t => t.CurrentState == "Doing" && t.IdProgrammer == user.Id);
+                if (doingCount >= 2)
+                {
+                    MessageBox.Show("Só pode ter 2 tarefas em 'Doing' em simultâneo.", "Limite atingido", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Só pode avançar a tarefa com menor OrderExecution em ToDo
+                var nextTask = context.Tasks
+                    .Where(t => t.IdProgrammer == user.Id && t.CurrentState == "ToDo")
+                    .OrderBy(t => t.OrderExecution)
+                    .FirstOrDefault();
+
+                if (nextTask == null || nextTask.Id != task.Id)
+                {
+                    MessageBox.Show("Tem de executar as tarefas pela ordem definida pelo gestor!", "Ordem Obrigatória", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var taskDb = context.Tasks.Find(task.Id);
+                if (taskDb != null)
+                {
+                    taskDb.CurrentState = "Doing";
+                    taskDb.RealTimeStart = DateTime.Now;
+                    context.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("Tarefa não encontrada no banco de dados.");
+                }
+            }
+
+            UpdateStateTaskList();
         }
+
+
+
+
 
 
         private void btSetTodo_Click(object sender, EventArgs e)
         {
-            if (lstDoing.SelectedItem != null)
+            if (lstDoing.SelectedItem == null)
             {
-                var task = (iTasks.Models.Task)lstDoing.SelectedItem;
+                MessageBox.Show("Selecione uma tarefa em 'Doing' para reiniciar a Tarefa");
+                return;
+            }
 
-                using (var context = new ITaskContext())
+            var task = (iTasks.Models.Task)lstDoing.SelectedItem;
+
+            if (task.IdProgrammer != user.Id)
+            {
+                MessageBox.Show("Só pode mover as suas próprias tarefas!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (var context = new ITaskContext())
+            {
+                var taskDb = context.Tasks.Find(task.Id);
+                if (taskDb != null)
                 {
-                    var taskDb = context.Tasks.Find(task.Id);
-                    if (taskDb != null)
-                    {
-                        taskDb.CurrentState = "ToDo";
-                        taskDb.RealTimeStart = null;
-                        context.SaveChanges();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Tarefa não encontrada no banco de dados.");
-                    }
+                    taskDb.CurrentState = "ToDo";
+                    taskDb.RealTimeStart = null;
+                    context.SaveChanges();
                 }
+                else
+                {
+                    MessageBox.Show("Tarefa não encontrada no banco de dados.");
+                }
+            }
 
-                UpdateStateTaskList();
-            }
-            else
-            {
-                MessageBox.Show("Selecione uma tarefa em 'Doing' para reniciar a Tarefa");
-            }
+            UpdateStateTaskList();
         }
+
+
 
         private void btSetDone_Click(object sender, EventArgs e)
         {
-            if (lstDoing.SelectedItem != null)
+            if (lstDoing.SelectedItem == null)
             {
-                var task = (iTasks.Models.Task)lstDoing.SelectedItem;
-
-                using (var context = new ITaskContext())
-                {
-                    var taskDb = context.Tasks.Find(task.Id);
-                    if (taskDb != null)
-                    {
-                        taskDb.CurrentState = "Done";
-                        taskDb.RealTimeEnd = DateTime.Now;
-                        context.SaveChanges();
-                    }
-                }
-
-                UpdateStateTaskList();
+                MessageBox.Show("Selecione uma tarefa em 'Doing' para concluir.");
+                return;
             }
+
+            var task = (iTasks.Models.Task)lstDoing.SelectedItem;
+
+            if (task.IdProgrammer != user.Id)
+            {
+                MessageBox.Show("Só pode mover as suas próprias tarefas!", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (var context = new ITaskContext())
+            {
+                var taskDb = context.Tasks.Find(task.Id);
+                if (taskDb != null)
+                {
+                    taskDb.CurrentState = "Done";
+                    taskDb.RealTimeEnd = DateTime.Now;
+                    context.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("Tarefa não encontrada no banco de dados.");
+                }
+            }
+
+            UpdateStateTaskList();
         }
+
+
 
         /*funcao so para trabalhar no projeto
            pq para o projeto final não deve ser possivel para tarefas Done para Doing */
