@@ -48,6 +48,7 @@ namespace iTasks
                 return "Unknown";
             }
         }
+                
         private void frmKanban_Load(object sender, EventArgs e)
         {
             
@@ -58,6 +59,63 @@ namespace iTasks
                 deleteTask.Visible = false;
                 exportarParaCSVToolStripMenuItem.Visible = false;
                 utilizadoresToolStripMenuItem.Visible = false;
+            }
+        }
+
+        private void btPrevisao_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                double tempoMedio = CalcularTempoMedioPorStoryPoint();
+
+                if (tempoMedio > 0)
+                {
+                    MessageBox.Show($"O tempo médio por story point é {tempoMedio:F2} horas",
+                                   "Tempo Médio", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Não existem tarefas concluídas suficientes para calcular a média.",
+                                   "Sem Dados", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao calcular tempo médio: {ex.Message}", "Erro",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private double CalcularTempoMedioPorStoryPoint()
+        {
+            using (var context = new ITaskContext())
+            {
+                // Buscar tarefas concluídas com tempos reais
+                var tarefasConcluidas = context.Tasks
+                    .Where(t => t.CurrentState == "Done" &&
+                               t.RealTimeStart.HasValue &&
+                               t.RealTimeEnd.HasValue &&
+                               t.StoryPoints > 0)
+                    .ToList();
+
+                if (!tarefasConcluidas.Any())
+                {
+                    return 0;
+                }
+
+                // Calcular tempo total e story points totais
+                double tempoTotal = 0;
+                int storyPointsTotal = 0;
+
+                foreach (var tarefa in tarefasConcluidas)
+                {
+                    double tempoTarefa = (tarefa.RealTimeEnd.Value - tarefa.RealTimeStart.Value).TotalHours;
+                    tempoTotal += tempoTarefa;
+                    storyPointsTotal += tarefa.StoryPoints;
+                }
+
+                // Retornar média: tempo total / story points total
+                return tempoTotal / storyPointsTotal;
             }
         }
 
@@ -91,8 +149,6 @@ namespace iTasks
                 lstDone.SelectedIndex = -1;
             }
         }
-
-
 
         private void buttonNewTask_Click(object sender, EventArgs e)
         {
@@ -205,12 +261,6 @@ namespace iTasks
 
             UpdateStateTaskList();
         }
-
-
-
-
-
-
         private void btSetTodo_Click(object sender, EventArgs e)
         {
             if (lstDoing.SelectedItem == null)
@@ -244,8 +294,6 @@ namespace iTasks
 
             UpdateStateTaskList();
         }
-
-
 
         private void btSetDone_Click(object sender, EventArgs e)
         {
@@ -281,10 +329,6 @@ namespace iTasks
             UpdateStateTaskList();
         }
 
-
-
-        /*funcao so para trabalhar no projeto
-           pq para o projeto final não deve ser possivel para tarefas Done para Doing */
         private void buttonDoneDoing_Click(object sender, EventArgs e)
         {
             if (lstDone.SelectedItem != null)

@@ -260,6 +260,7 @@
             this.btPrevisao.TabIndex = 10;
             this.btPrevisao.Text = "Ver Previsão de Conclusão";
             this.btPrevisao.UseVisualStyleBackColor = true;
+            this.btPrevisao.Click += new System.EventHandler(this.btPrevisao_Click);
             // 
             // buttonDoneDoing
             // 
