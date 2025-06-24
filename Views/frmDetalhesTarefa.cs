@@ -32,10 +32,11 @@ namespace iTasks
 
             updateFields();
         }
-        public frmDetalhesTarefa(Task tarefa, bool somenteLeitura = false)
+        public frmDetalhesTarefa(Task tarefa, bool somenteLeitura = false, User user = null)
         {
             InitializeComponent();
             tarefaAtual = tarefa;
+            CurrentUser = user;
             ItaskContext = new ITaskContext();
             updateFields();
 
@@ -86,6 +87,9 @@ namespace iTasks
 
                 dtInicio.Enabled = false;
                 dtFim.Enabled = false;
+                txtDesc.Enabled = false;
+                txtOrdem.Enabled = false;
+                txtStoryPoints.Enabled = false;
 
                 btGravar.Visible = false;
                 this.Text = "Detalhes da Tarefa (Somente Leitura)";
@@ -156,23 +160,57 @@ namespace iTasks
 
             using (var context = new ITaskContext())
             {
-                var existe = context.Tasks.Any(t => t.IdProgrammer == idProgrammer && t.OrderExecution == OrderExecution);
-
-                if (existe)
+               
+                if (tarefaAtual != null)
                 {
-                    MessageBox.Show("Já existe uma tarefa com essa ordem para este programador!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    
+                    var existe = context.Tasks.Any(t => t.IdProgrammer == idProgrammer &&
+                                                       t.OrderExecution == OrderExecution &&
+                                                       t.Id != tarefaAtual.Id);
+
+                    if (existe)
+                    {
+                        MessageBox.Show("Já existe uma tarefa com essa ordem para este programador!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    
+                    var taskDb = context.Tasks.Find(tarefaAtual.Id);
+                    if (taskDb != null)
+                    {
+                        taskDb.Description = Description;
+                        taskDb.OrderExecution = OrderExecution;
+                        taskDb.StoryPoints = StoryPoints;
+                        taskDb.IdTypeTask = idTypeTask;
+                        taskDb.IdProgrammer = idProgrammer;
+                        taskDb.DateStart = start;
+                        taskDb.DateEnd = end;
+
+                        context.SaveChanges();
+                        MessageBox.Show("Tarefa editada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                   
+                    var existe = context.Tasks.Any(t => t.IdProgrammer == idProgrammer && t.OrderExecution == OrderExecution);
+
+                    if (existe)
+                    {
+                        MessageBox.Show("Já existe uma tarefa com essa ordem para este programador!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                   
+                    TaskController controller = new TaskController();
+                    bool success = controller.CreateTask(Description, OrderExecution, StoryPoints, idManager, idTypeTask, idProgrammer, start, end);
+                    if (success == false)
+                    {
+                        return;
+                    }
+                    MessageBox.Show("Tarefa criada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-
-            TaskController controller = new TaskController();
-
-            bool success = controller.CreateTask(Description, OrderExecution, StoryPoints, idManager, idTypeTask, idProgrammer, start, end);
-            if (success == false)
-            {
-                return;
-            }
-            MessageBox.Show("Tarefa criada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             this.Close();
         }

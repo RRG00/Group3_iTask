@@ -405,19 +405,40 @@ namespace iTasks
             if (lstDoing.SelectedItem != null)
             {
                 var tarefaSelecionada = (iTasks.Models.Task)lstDoing.SelectedItem;
-                frmDetalhesTarefa detalhesForm = new frmDetalhesTarefa(tarefaSelecionada, true);
+
+                // Verificar se é gestor para permitir edição
+                bool isReadOnly = !(user is Manager);
+
+                // Passar o user para o construtor
+                frmDetalhesTarefa detalhesForm = new frmDetalhesTarefa(tarefaSelecionada, isReadOnly, user);
                 detalhesForm.ShowDialog();
+
+                // Se foi editado por um gestor, atualizar as listas
+                if (!isReadOnly)
+                {
+                    UpdateStateTaskList();
+                }
             }
         }
 
         private void lstDone_DoubleClick(object sender, EventArgs e)
         {
-
             if (lstDone.SelectedItem != null)
             {
                 var tarefaSelecionada = (iTasks.Models.Task)lstDone.SelectedItem;
-                frmDetalhesTarefa detalhesForm = new frmDetalhesTarefa(tarefaSelecionada, true);
+
+                // Verificar se é gestor para permitir edição
+                bool isReadOnly = !(user is Manager);
+
+                // Passar o user para o construtor
+                frmDetalhesTarefa detalhesForm = new frmDetalhesTarefa(tarefaSelecionada, isReadOnly, user);
                 detalhesForm.ShowDialog();
+
+                // Se foi editado por um gestor, atualizar as listas
+                if (!isReadOnly)
+                {
+                    UpdateStateTaskList();
+                }
             }
         }
 
@@ -426,8 +447,19 @@ namespace iTasks
             if (lstTodo.SelectedItem != null)
             {
                 var tarefaSelecionada = (iTasks.Models.Task)lstTodo.SelectedItem;
-                frmDetalhesTarefa detalhesForm = new frmDetalhesTarefa(tarefaSelecionada, true);
+
+                // Verificar se é gestor para permitir edição
+                bool isReadOnly = !(user is Manager);
+
+                // Passar o user para o construtor
+                frmDetalhesTarefa detalhesForm = new frmDetalhesTarefa(tarefaSelecionada, isReadOnly, user);
                 detalhesForm.ShowDialog();
+
+                // Se foi editado por um gestor, atualizar as listas
+                if (!isReadOnly)
+                {
+                    UpdateStateTaskList();
+                }
             }
         }
 
