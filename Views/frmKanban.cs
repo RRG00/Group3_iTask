@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.Remoting.Contexts;
 using System.Text;
@@ -355,6 +356,88 @@ namespace iTasks
                 frmDetalhesTarefa detalhesForm = new frmDetalhesTarefa(tarefaSelecionada, true);
                 detalhesForm.ShowDialog();
             }
+        }
+
+        private void exportarParaCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Filtrar apenas tarefas concluídas
+                List<iTasks.Models.Task> tarefasConcluidas;
+                using (var context = new ITaskContext())
+                {
+                    tarefasConcluidas = context.Tasks.Where(t => t.CurrentState == "Done").ToList();
+                }
+
+                    if (tarefasConcluidas.Count > 0)
+                    {
+                        // Abrir diálogo para escolher local de gravação
+                        using (SaveFileDialog saveDialog = new SaveFileDialog())
+                        {
+                            saveDialog.Filter = "Ficheiros CSV (*.csv)|*.csv";
+                            saveDialog.Title = "Guardar Tarefas Concluídas";
+                            saveDialog.FileName = $"TarefasConcluidas_{DateTime.Now:yyyyMMdd_HHmmss}.csv";
+
+                            if (saveDialog.ShowDialog() == DialogResult.OK)
+                            {
+                                ExportarParaCSV(tarefasConcluidas, saveDialog.FileName);
+                                MessageBox.Show($"Tarefas exportadas com sucesso!\nFicheiro: {saveDialog.FileName}",
+                                    "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Não existem tarefas concluídas para exportar.", "Informação",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return;
+                    }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao exportar tarefas: {ex.Message}", "Erro",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ExportarParaCSV(List<Task> tarefasConcluidas, string caminhoFicheiro)
+        {
+            using (StreamWriter writer = new StreamWriter(caminhoFicheiro, false, Encoding.UTF8))
+            {
+                // Cabeçalho - primeira linha com nomes das colunas
+                writer.WriteLine("Programador;Descricao;DataPrevistaInicio;DataPrevistaFim;TipoTarefa;DataRealInicio;DataRealFim");
+
+                // Dados das tarefas
+                foreach (var tarefa in tarefasConcluidas)
+                {
+                    string linha =
+                                  $"{EscaparCampoCSV(tarefa.IdProgrammer.ToString())};" +
+                                  $"{EscaparCampoCSV(tarefa.Description)};" +
+                                  $"{tarefa.DateStart:dd/MM/yyyy};" +
+                                  $"{tarefa.DateEnd:dd/MM/yyyy};" +
+                                  $"{EscaparCampoCSV(tarefa.IdTypeTask.ToString())};" +
+                                  $"{(tarefa.RealTimeStart.HasValue ? tarefa.RealTimeStart.ToString() : "")};" +
+                                  $"{(tarefa.RealTimeEnd.HasValue ? tarefa.RealTimeEnd.ToString() : "")}";
+
+                    writer.WriteLine(linha);
+                }
+            }
+        }
+
+        // Método para escapar campos que contenham ponto e vírgula, aspas ou quebras de linha
+        private string EscaparCampoCSV(string campo)
+        {
+            if (string.IsNullOrEmpty(campo))
+                return string.Empty;
+
+            // Se o campo contém ponto e vírgula, aspas ou quebra de linha, envolver em aspas
+            if (campo.Contains(";") || campo.Contains("\"") || campo.Contains("\n") || campo.Contains("\r"))
+            {
+                // Duplicar aspas existentes e envolver em aspas
+                return "\"" + campo.Replace("\"", "\"\"") + "\"";
+            }
+
+            return campo;
         }
     }
 
