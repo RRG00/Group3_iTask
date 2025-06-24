@@ -117,7 +117,36 @@ namespace iTasks
         {
             using (var ItaskContext = new ITaskContext())
             {
-                cbGestorProg.DataSource = ItaskContext.Manager.ToList();
+                // Guardar seleção atual
+                var selectedManager = cbGestorProg.SelectedItem as Manager;
+                int? selectedId = selectedManager?.Id;
+
+                // Limpar completamente
+                cbGestorProg.DataSource = null;
+                cbGestorProg.Items.Clear();
+
+                // Recarregar com gestores únicos
+                var managers = ItaskContext.Manager.Distinct().ToList();
+                cbGestorProg.DataSource = managers;
+                cbGestorProg.DisplayMember = "Name";
+                cbGestorProg.ValueMember = "Id";
+
+                // Restaurar seleção se existir
+                if (selectedId.HasValue)
+                {
+                    foreach (Manager manager in cbGestorProg.Items)
+                    {
+                        if (manager.Id == selectedId.Value)
+                        {
+                            cbGestorProg.SelectedItem = manager;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    cbGestorProg.SelectedIndex = -1;
+                }
             }
         }
 
@@ -202,7 +231,7 @@ namespace iTasks
             Department? department = cbDepartamento.SelectedItem != null ? (Department?)cbDepartamento.SelectedItem : null;
             bool manageUsers = chkGereUtilizadores.Checked;
 
-            // Validações Manager
+            // Validations
             if (managerSelect == null) errors.Add("Por favor selecione um manager");
             if (string.IsNullOrWhiteSpace(name)) errors.Add("Name é obrigatório");
             if (string.IsNullOrWhiteSpace(username)) errors.Add("Username é obrigatório");
@@ -239,26 +268,57 @@ namespace iTasks
 
         private void btApagarGestor_Click(object sender, EventArgs e)
         {
+            Manager managerSelect = lstListaGestores.SelectedItem as Manager;
 
-            using (var ITaskContext = new ITaskContext())
+            if (managerSelect == null)
             {
-                Manager ManagerSelect = (Manager)lstListaGestores.SelectedItem;
-                if (ManagerSelect != null)
-                {
-                    ItaskContext.Manager.Remove(ItaskContext.Manager.Find(ManagerSelect.Id));
-                    ItaskContext.SaveChanges();
-
-                    UpdateFields();
-                    UpdateManagerList();
-                    CleanManagerFields();
-                }
-                else
-                {
-                    return;
-                }
-
+                MessageBox.Show("Por favor selecione um manager para apagar.", "Aviso",
+                               MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
 
+            
+            var result = MessageBox.Show($"Tem certeza que deseja apagar o manager '{managerSelect.Name}'?",
+                                        "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result != DialogResult.Yes) return;
+
+            try
+            {
+                using (var context = new ITaskContext())
+                {
+                    
+                    var programmersCount = context.Programmers.Count(p => p.IdManager.Id == managerSelect.Id);
+
+                    if (programmersCount > 0)
+                    {
+                        MessageBox.Show($"Não é possível apagar este manager pois tem {programmersCount} programador(es) associado(s).\n" +
+                                      "Remova ou reatribua os programadores primeiro.", "Erro",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    
+                    var managerToDelete = context.Manager.Find(managerSelect.Id);
+                    if (managerToDelete != null)
+                    {
+                        context.Manager.Remove(managerToDelete);
+                        context.SaveChanges();
+
+                        UpdateFields();
+                        UpdateManagerList();
+                        CleanManagerFields();
+
+                        MessageBox.Show("Manager apagado com sucesso!", "Sucesso",
+                                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro ao apagar manager:\n{ex.Message}", "Erro",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btAttProg_Click(object sender, EventArgs e)
@@ -291,41 +351,48 @@ namespace iTasks
             {
                 using (var context = new ITaskContext())
                 {
-                    programmerSelect.Name = name;
-                    programmerSelect.Username = username;
-                    programmerSelect.Password = password;
-                    programmerSelect.ExperienceLevel = experienceLevel.Value;
-                    programmerSelect.IdManager = manager;
-                    context.Programmers.AddOrUpdate(programmerSelect);
-                    context.SaveChanges();
-                    UpdateProgrammerList();
-                    MessageBox.Show("Update com sucesso!", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Buscar o programador e manager no contexto atual
+                    var existingProgrammer = context.Programmers.Find(programmerSelect.Id);
+                    var existingManager = context.Manager.Find(manager.Id);
+
+                    if (existingProgrammer != null && existingManager != null)
+                    {
+                        existingProgrammer.Name = name;
+                        existingProgrammer.Username = username;
+                        existingProgrammer.Password = password;
+                        existingProgrammer.ExperienceLevel = experienceLevel.Value;
+                        existingProgrammer.IdManager = existingManager; // Usar o manager do contexto atual
+
+                        context.SaveChanges();
+                        UpdateProgrammerList();
+                        MessageBox.Show("Update com sucesso!", "Successo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Programador ou Manager não encontrado!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Update com erro!:\n{ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Erro no update:\n{ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btApagarProg_Click(object sender, EventArgs e)
         {
-            using (var ITaskContext = new ITaskContext())
+            using (var ITaskContext = new ITaskContext()) // Mantém o nome que criaste
             {
                 Programmer ProgrammerSelect = (Programmer)lstListaProgramadores.SelectedItem;
                 if (ProgrammerSelect != null)
                 {
-                    ItaskContext.Programmers.Remove(ItaskContext.Programmers.Find(ProgrammerSelect.Id));
-                    ItaskContext.SaveChanges();
+                    ITaskContext.Programmers.Remove(ITaskContext.Programmers.Find(ProgrammerSelect.Id)); // USA A VARIÁVEL LOCAL
+                    ITaskContext.SaveChanges(); // USA A VARIÁVEL LOCAL
 
                     UpdateFields();
                     CleanProgFields();
                     UpdateProgrammerList();
-                }else
-                {
-                    return;
                 }
-
             }
         }
 

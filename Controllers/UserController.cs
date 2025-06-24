@@ -25,9 +25,18 @@ namespace iTasks.Controllers
         {
             using (var ItaskContext = new ITaskContext())
             {
-                Programmer programmer = new Programmer(name, username, password, experienceLevel, idManager);
-                ItaskContext.Programmers.Add(programmer);
-                ItaskContext.SaveChanges();
+                var existingManager = ItaskContext.Manager.Find(idManager.Id);
+
+                if (existingManager != null)
+                {
+                    Programmer programmer = new Programmer(name, username, password, experienceLevel, existingManager);
+                    ItaskContext.Programmers.Add(programmer);
+                    ItaskContext.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("Manager não encontrado!");
+                }
             }
             return true;
         }
