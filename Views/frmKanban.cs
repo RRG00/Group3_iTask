@@ -68,7 +68,7 @@ namespace iTasks
         {
             try
             {
-                double tempoMedio = CalcularTempoMedioPorStoryPoint();
+                double tempoMedio = CalcularTempoPrevistoParaTarefasToDo();
 
                 if (tempoMedio > 0)
                 {
@@ -77,9 +77,10 @@ namespace iTasks
                 }
                 else
                 {
-                    MessageBox.Show("Não existem tarefas concluídas suficientes para calcular a média.",
-                                   "Sem Dados", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Não existem tarefas por prever (nenhuma tarefa em 'ToDo').",
+                                   "Sem Dados", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+
             }
             catch (Exception ex)
             {
@@ -88,36 +89,53 @@ namespace iTasks
             }
         }
 
-        private double CalcularTempoMedioPorStoryPoint()
+        private double CalcularTempoPrevistoParaTarefasToDo()
         {
             using (var context = new ITaskContext())
             {
-                // Buscar tarefas concluídas com tempos reais
                 var tarefasConcluidas = context.Tasks
                     .Where(t => t.CurrentState == "Done" &&
-                               t.RealTimeStart.HasValue &&
-                               t.RealTimeEnd.HasValue &&
-                               t.StoryPoints > 0)
+                                t.RealTimeStart.HasValue &&
+                                t.RealTimeEnd.HasValue &&
+                                t.StoryPoints > 0)
                     .ToList();
 
-                if (!tarefasConcluidas.Any())
-                {
+                var mediasPorSP = tarefasConcluidas
+                    .GroupBy(t => t.StoryPoints)
+                    .ToDictionary(
+                        g => g.Key,
+                        g => g.Average(t => (t.RealTimeEnd.Value - t.RealTimeStart.Value).TotalHours)
+                    );
+
+                if (!mediasPorSP.Any())
                     return 0;
-                }
 
-                // Calcular tempo total e story points totais
-                double tempoTotal = 0;
-                int storyPointsTotal = 0;
+                var tarefasToDo = context.Tasks
+                    .Where(t => t.CurrentState == "ToDo" && t.StoryPoints > 0)
+                    .ToList();
 
-                foreach (var tarefa in tarefasConcluidas)
+                double tempoPrevistoTotal = 0;
+
+                foreach (var tarefa in tarefasToDo)
                 {
-                    double tempoTarefa = (tarefa.RealTimeEnd.Value - tarefa.RealTimeStart.Value).TotalHours;
-                    tempoTotal += tempoTarefa;
-                    storyPointsTotal += tarefa.StoryPoints;
+                    double tempoPrevisto;
+
+                    if (mediasPorSP.ContainsKey(tarefa.StoryPoints))
+                    {
+                        tempoPrevisto = mediasPorSP[tarefa.StoryPoints];
+                    }
+                    else
+                    {
+                        var spMaisProximo = mediasPorSP.Keys
+                            .OrderBy(sp => Math.Abs(sp - tarefa.StoryPoints))
+                            .First();
+                        tempoPrevisto = mediasPorSP[spMaisProximo];
+                    }
+
+                    tempoPrevistoTotal += tempoPrevisto;
                 }
 
-                // Retornar média: tempo total / story points total
-                return tempoTotal / storyPointsTotal;
+                return tempoPrevistoTotal;
             }
         }
 
