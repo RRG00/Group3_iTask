@@ -24,13 +24,10 @@ namespace iTasks
 
         private void frmConsultaTarefasEmCurso_Load(object sender, EventArgs e)
         {
-            int gestorId = _currentUserId;
-
             using (var context = new ITaskContext())
             {
                 var tarefasDb = context.Tasks
-                    .Where(t => t.IdManager == gestorId && t.CurrentState != "Done" && t.CurrentState != "Done")
-                    .OrderBy(t => t.CurrentState)
+                    .Where(t => t.CurrentState == "Doing" || t.CurrentState == "ToDo")
                     .ToList();
 
                 var tarefas = tarefasDb

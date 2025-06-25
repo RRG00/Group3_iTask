@@ -31,24 +31,13 @@ namespace iTasks
         {
             using (var context = new ITaskContext())
             {
-                if (_currentUserId == 0 || string.IsNullOrEmpty(_userType))
+                if (_userType == "Programmer" || _userType == "Programador")
                 {
-                    CarregarTarefasOriginal(context);
+                    CarregarTarefasProgramador(context);
                 }
                 else
                 {
-                    if (_userType == "Programmer" || _userType == "Programador")
-                    {
-                        CarregarTarefasProgramador(context);
-                    }
-                    else if (_userType == "Manager" || _userType == "Gestor")
-                    {
-                        CarregarTarefasGestor(context);
-                    }
-                    else
-                    {
-                        CarregarTarefasOriginal(context);
-                    }
+                    CarregarTarefasOriginal(context);
                 }
             }
         }
@@ -72,6 +61,7 @@ namespace iTasks
 
             dataGridTarefasConlcuidas.DataSource = tarefas;
         }
+
         private void CarregarTarefasProgramador(ITaskContext context)
         {
             var tarefasDb = context.Tasks
@@ -91,10 +81,11 @@ namespace iTasks
             dataGridTarefasConlcuidas.DataSource = tarefas;
             ConfigurarColunasProgramador();
         }
+
         private void CarregarTarefasGestor(ITaskContext context)
         {
             var tarefasDb = context.Tasks
-                .Where(t => t.CurrentState == "Done" && t.IdManager == _currentUserId)
+                .Where(t => t.CurrentState == "Done")
                 .ToList();
 
             var tarefas = tarefasDb

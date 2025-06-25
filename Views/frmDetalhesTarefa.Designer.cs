@@ -187,22 +187,22 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label6.Location = new System.Drawing.Point(2, 251);
+            this.label6.Location = new System.Drawing.Point(13, 251);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(133, 15);
+            this.label6.Size = new System.Drawing.Size(117, 15);
             this.label6.TabIndex = 15;
-            this.label6.Text = "📅 Data Prevista Início:";
+            this.label6.Text = "Data Prevista Início:";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label7.Location = new System.Drawing.Point(9, 278);
+            this.label7.Location = new System.Drawing.Point(24, 278);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(123, 15);
+            this.label7.Size = new System.Drawing.Size(107, 15);
             this.label7.TabIndex = 17;
-            this.label7.Text = "📅 Data Prevista Fim:";
+            this.label7.Text = "Data Prevista Fim:";
             // 
             // dtFim
             // 
@@ -231,11 +231,11 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label8.Location = new System.Drawing.Point(327, 15);
+            this.label8.Location = new System.Drawing.Point(346, 15);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(94, 15);
+            this.label8.Size = new System.Drawing.Size(78, 15);
             this.label8.TabIndex = 18;
-            this.label8.Text = "📊 Estado Atual:";
+            this.label8.Text = "Estado Atual:";
             // 
             // txtDataRealini
             // 
@@ -255,11 +255,11 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label9.Location = new System.Drawing.Point(19, 45);
+            this.label9.Location = new System.Drawing.Point(31, 45);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(112, 15);
+            this.label9.Size = new System.Drawing.Size(96, 15);
             this.label9.TabIndex = 20;
-            this.label9.Text = "⏰ Data Real Início:";
+            this.label9.Text = "Data Real Início:";
             // 
             // txtdataRealFim
             // 
@@ -279,11 +279,11 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label10.Location = new System.Drawing.Point(31, 71);
+            this.label10.Location = new System.Drawing.Point(41, 71);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(102, 15);
+            this.label10.Size = new System.Drawing.Size(86, 15);
             this.label10.TabIndex = 22;
-            this.label10.Text = "⏰ Data Real Fim:";
+            this.label10.Text = "Data Real Fim:";
             // 
             // txtDataCriacao
             // 
@@ -303,11 +303,11 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.label11.Location = new System.Drawing.Point(325, 45);
+            this.label11.Location = new System.Drawing.Point(344, 45);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(95, 15);
+            this.label11.Size = new System.Drawing.Size(79, 15);
             this.label11.TabIndex = 24;
-            this.label11.Text = "📅 Data Criação:";
+            this.label11.Text = "Data Criação:";
             // 
             // panel1
             // 
@@ -414,7 +414,8 @@
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frmDetalhesTarefa";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "iTask - Detalhes da Tarefa";

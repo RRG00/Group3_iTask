@@ -48,7 +48,7 @@ namespace iTasks
                 return "Unknown";
             }
         }
-                
+
         private void frmKanban_Load(object sender, EventArgs e)
         {
             
@@ -203,7 +203,6 @@ namespace iTasks
             Form newForm = new frmConsultaTarefasEmCurso(user.Id, userRole);
             newForm.Show();
         }
-
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -566,6 +565,11 @@ namespace iTasks
             }
 
             return campo;
+        }
+
+        private void ficheiroToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

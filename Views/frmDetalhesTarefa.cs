@@ -160,10 +160,8 @@ namespace iTasks
 
             using (var context = new ITaskContext())
             {
-               
                 if (tarefaAtual != null)
                 {
-                    
                     var existe = context.Tasks.Any(t => t.IdProgrammer == idProgrammer &&
                                                        t.OrderExecution == OrderExecution &&
                                                        t.Id != tarefaAtual.Id);
@@ -174,7 +172,6 @@ namespace iTasks
                         return;
                     }
 
-                    
                     var taskDb = context.Tasks.Find(tarefaAtual.Id);
                     if (taskDb != null)
                     {
@@ -192,7 +189,6 @@ namespace iTasks
                 }
                 else
                 {
-                   
                     var existe = context.Tasks.Any(t => t.IdProgrammer == idProgrammer && t.OrderExecution == OrderExecution);
 
                     if (existe)
@@ -201,9 +197,8 @@ namespace iTasks
                         return;
                     }
 
-                   
                     TaskController controller = new TaskController();
-                    bool success = controller.CreateTask(Description, OrderExecution, StoryPoints, idManager, idTypeTask, idProgrammer, start, end);
+                    bool success = controller.CreateTask(Description, OrderExecution, StoryPoints, idTypeTask, idManager, idProgrammer, start, end);
                     if (success == false)
                     {
                         return;

@@ -28,24 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btFechar = new System.Windows.Forms.Button();
             this.gvTarefasConcluidas = new System.Windows.Forms.DataGridView();
             this.dataGridTarefasConlcuidas = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.gvTarefasConcluidas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTarefasConlcuidas)).BeginInit();
             this.SuspendLayout();
-
-            // 
-            // gvTarefasConcluidas
-            // 
-            this.gvTarefasConcluidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvTarefasConcluidas.Location = new System.Drawing.Point(12, 12);
-            this.gvTarefasConcluidas.Name = "gvTarefasConcluidas";
-            this.gvTarefasConcluidas.RowHeadersWidth = 62;
-            this.gvTarefasConcluidas.Size = new System.Drawing.Size(1026, 395);
-            this.gvTarefasConcluidas.TabIndex = 31;
-            this.gvTarefasConcluidas.Visible = false;
-
             // 
             // btFechar
             // 
@@ -62,34 +53,50 @@
             this.btFechar.Text = "❌ Fechar";
             this.btFechar.UseVisualStyleBackColor = false;
             this.btFechar.Click += new System.EventHandler(this.btFechar_Click);
-
+            // 
+            // gvTarefasConcluidas
+            // 
+            this.gvTarefasConcluidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvTarefasConcluidas.Location = new System.Drawing.Point(12, 12);
+            this.gvTarefasConcluidas.Name = "gvTarefasConcluidas";
+            this.gvTarefasConcluidas.RowHeadersWidth = 62;
+            this.gvTarefasConcluidas.Size = new System.Drawing.Size(1026, 395);
+            this.gvTarefasConcluidas.TabIndex = 31;
+            this.gvTarefasConcluidas.Visible = false;
             // 
             // dataGridTarefasConlcuidas
             // 
             this.dataGridTarefasConlcuidas.AllowUserToAddRows = false;
             this.dataGridTarefasConlcuidas.AllowUserToDeleteRows = false;
             this.dataGridTarefasConlcuidas.AllowUserToResizeRows = false;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.dataGridTarefasConlcuidas.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dataGridTarefasConlcuidas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridTarefasConlcuidas.BackgroundColor = System.Drawing.Color.White;
             this.dataGridTarefasConlcuidas.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridTarefasConlcuidas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dataGridTarefasConlcuidas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dataGridTarefasConlcuidas.ColumnHeadersDefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.dataGridTarefasConlcuidas.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.dataGridTarefasConlcuidas.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridTarefasConlcuidas.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White;
-            this.dataGridTarefasConlcuidas.ColumnHeadersDefaultCellStyle.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.dataGridTarefasConlcuidas.ColumnHeadersDefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.dataGridTarefasConlcuidas.ColumnHeadersDefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
-            this.dataGridTarefasConlcuidas.ColumnHeadersDefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridTarefasConlcuidas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dataGridTarefasConlcuidas.ColumnHeadersHeight = 40;
             this.dataGridTarefasConlcuidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.dataGridTarefasConlcuidas.DefaultCellStyle.BackColor = System.Drawing.Color.White;
-            this.dataGridTarefasConlcuidas.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dataGridTarefasConlcuidas.DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-            this.dataGridTarefasConlcuidas.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
-            this.dataGridTarefasConlcuidas.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
-            this.dataGridTarefasConlcuidas.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridTarefasConlcuidas.DefaultCellStyle = dataGridViewCellStyle6;
             this.dataGridTarefasConlcuidas.EnableHeadersVisualStyles = false;
             this.dataGridTarefasConlcuidas.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dataGridTarefasConlcuidas.Location = new System.Drawing.Point(12, 12);
@@ -103,11 +110,6 @@
             this.dataGridTarefasConlcuidas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridTarefasConlcuidas.Size = new System.Drawing.Size(1026, 395);
             this.dataGridTarefasConlcuidas.TabIndex = 33;
-
-            // Configurar estilo das linhas alternadas
-            this.dataGridTarefasConlcuidas.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
-            this.dataGridTarefasConlcuidas.AlternatingRowsDefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
-
             // 
             // frmConsultarTarefasConcluidas
             // 
@@ -119,7 +121,8 @@
             this.Controls.Add(this.btFechar);
             this.Controls.Add(this.gvTarefasConcluidas);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "frmConsultarTarefasConcluidas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "iTask - ✅ Consultar Tarefas Concluídas";

@@ -144,7 +144,7 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.menuStrip1.BackColor = System.Drawing.Color.LightGray;
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -164,10 +164,11 @@
             this.ficheiroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.sairToolStripMenuItem,
             this.exportarParaCSVToolStripMenuItem});
-            this.ficheiroToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.ficheiroToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.ficheiroToolStripMenuItem.Name = "ficheiroToolStripMenuItem";
             this.ficheiroToolStripMenuItem.Size = new System.Drawing.Size(79, 22);
             this.ficheiroToolStripMenuItem.Text = "📁 Ficheiro";
+            this.ficheiroToolStripMenuItem.Click += new System.EventHandler(this.ficheiroToolStripMenuItem_Click);
             // 
             // sairToolStripMenuItem
             // 
@@ -188,7 +189,7 @@
             this.utilizadoresToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonNewUsers,
             this.gerirTiposDeTarefasToolStripMenuItem});
-            this.utilizadoresToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.utilizadoresToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.utilizadoresToolStripMenuItem.Name = "utilizadoresToolStripMenuItem";
             this.utilizadoresToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.utilizadoresToolStripMenuItem.Text = "⚙️ Gestão da Aplicação";
@@ -212,7 +213,7 @@
             this.listagensToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.buttonTaskDone,
             this.buttonTaskDoing});
-            this.listagensToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.listagensToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
             this.listagensToolStripMenuItem.Name = "listagensToolStripMenuItem";
             this.listagensToolStripMenuItem.Size = new System.Drawing.Size(86, 22);
             this.listagensToolStripMenuItem.Text = "📋 Listagens";
@@ -358,8 +359,9 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "frmKanban";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "iTask - Kanban Board";

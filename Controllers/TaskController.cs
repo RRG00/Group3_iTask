@@ -56,7 +56,7 @@ namespace iTasks.Controllers
                 return false;
             }
 
-            
+
             try
             {
                 using (var ItaskContext = new ITaskContext())
@@ -69,12 +69,9 @@ namespace iTasks.Controllers
             }
             catch
             {
-              
+
                 return false;
             }
         }
-
-
-
     }
 }
