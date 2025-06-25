@@ -34,16 +34,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gvTarefasConcluidas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTarefasConlcuidas)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btFechar
-            // 
-            this.btFechar.Location = new System.Drawing.Point(934, 415);
-            this.btFechar.Name = "btFechar";
-            this.btFechar.Size = new System.Drawing.Size(104, 23);
-            this.btFechar.TabIndex = 32;
-            this.btFechar.Text = "Fechar";
-            this.btFechar.UseVisualStyleBackColor = true;
-            this.btFechar.Click += new System.EventHandler(this.btFechar_Click);
+
             // 
             // gvTarefasConcluidas
             // 
@@ -53,30 +44,85 @@
             this.gvTarefasConcluidas.RowHeadersWidth = 62;
             this.gvTarefasConcluidas.Size = new System.Drawing.Size(1026, 395);
             this.gvTarefasConcluidas.TabIndex = 31;
+            this.gvTarefasConcluidas.Visible = false;
+
+            // 
+            // btFechar
+            // 
+            this.btFechar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(149)))), ((int)(((byte)(165)))), ((int)(((byte)(166)))));
+            this.btFechar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btFechar.FlatAppearance.BorderSize = 0;
+            this.btFechar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btFechar.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btFechar.ForeColor = System.Drawing.Color.White;
+            this.btFechar.Location = new System.Drawing.Point(934, 415);
+            this.btFechar.Name = "btFechar";
+            this.btFechar.Size = new System.Drawing.Size(104, 35);
+            this.btFechar.TabIndex = 32;
+            this.btFechar.Text = "❌ Fechar";
+            this.btFechar.UseVisualStyleBackColor = false;
+            this.btFechar.Click += new System.EventHandler(this.btFechar_Click);
+
             // 
             // dataGridTarefasConlcuidas
             // 
-            this.dataGridTarefasConlcuidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridTarefasConlcuidas.AllowUserToAddRows = false;
+            this.dataGridTarefasConlcuidas.AllowUserToDeleteRows = false;
+            this.dataGridTarefasConlcuidas.AllowUserToResizeRows = false;
+            this.dataGridTarefasConlcuidas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridTarefasConlcuidas.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridTarefasConlcuidas.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridTarefasConlcuidas.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            this.dataGridTarefasConlcuidas.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dataGridTarefasConlcuidas.ColumnHeadersDefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.dataGridTarefasConlcuidas.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.dataGridTarefasConlcuidas.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridTarefasConlcuidas.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White;
+            this.dataGridTarefasConlcuidas.ColumnHeadersDefaultCellStyle.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.dataGridTarefasConlcuidas.ColumnHeadersDefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.dataGridTarefasConlcuidas.ColumnHeadersDefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.dataGridTarefasConlcuidas.ColumnHeadersDefaultCellStyle.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridTarefasConlcuidas.ColumnHeadersHeight = 40;
+            this.dataGridTarefasConlcuidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dataGridTarefasConlcuidas.DefaultCellStyle.BackColor = System.Drawing.Color.White;
+            this.dataGridTarefasConlcuidas.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataGridTarefasConlcuidas.DefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+            this.dataGridTarefasConlcuidas.DefaultCellStyle.Padding = new System.Windows.Forms.Padding(10, 5, 5, 5);
+            this.dataGridTarefasConlcuidas.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(152)))), ((int)(((byte)(219)))));
+            this.dataGridTarefasConlcuidas.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
+            this.dataGridTarefasConlcuidas.EnableHeadersVisualStyles = false;
+            this.dataGridTarefasConlcuidas.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dataGridTarefasConlcuidas.Location = new System.Drawing.Point(12, 12);
-            this.dataGridTarefasConlcuidas.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridTarefasConlcuidas.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridTarefasConlcuidas.MultiSelect = false;
             this.dataGridTarefasConlcuidas.Name = "dataGridTarefasConlcuidas";
+            this.dataGridTarefasConlcuidas.ReadOnly = true;
+            this.dataGridTarefasConlcuidas.RowHeadersVisible = false;
             this.dataGridTarefasConlcuidas.RowHeadersWidth = 62;
-            this.dataGridTarefasConlcuidas.RowTemplate.Height = 28;
+            this.dataGridTarefasConlcuidas.RowTemplate.Height = 35;
+            this.dataGridTarefasConlcuidas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridTarefasConlcuidas.Size = new System.Drawing.Size(1026, 395);
             this.dataGridTarefasConlcuidas.TabIndex = 33;
+
+            // Configurar estilo das linhas alternadas
+            this.dataGridTarefasConlcuidas.AlternatingRowsDefaultCellStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(249)))), ((int)(((byte)(250)))));
+            this.dataGridTarefasConlcuidas.AlternatingRowsDefaultCellStyle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(62)))), ((int)(((byte)(80)))));
+
             // 
             // frmConsultarTarefasConcluidas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1052, 450);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(240)))), ((int)(((byte)(241)))));
+            this.ClientSize = new System.Drawing.Size(1052, 465);
             this.Controls.Add(this.dataGridTarefasConlcuidas);
             this.Controls.Add(this.btFechar);
             this.Controls.Add(this.gvTarefasConcluidas);
+            this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "frmConsultarTarefasConcluidas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "iTask - Consultar tarefas concluidas";
+            this.Text = "iTask - ✅ Consultar Tarefas Concluídas";
             this.Load += new System.EventHandler(this.frmConsultarTarefasConcluidas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gvTarefasConcluidas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTarefasConlcuidas)).EndInit();
