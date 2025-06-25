@@ -109,26 +109,6 @@ namespace iTasks
 
         }
 
-        public frmDetalhesTarefa(TypeTask typeTask)
-        {
-            TypeTask = typeTask;
-            InitializeComponent();
-
-            ItaskContext = new ITaskContext();
-
-            updateFields();
-
-        }
-
-        public frmDetalhesTarefa(Programmer programmer)
-        {
-            Programmer = programmer;
-            InitializeComponent();
-
-            ItaskContext = new ITaskContext();
-
-        }
-
         private void btGravar_Click(object sender, EventArgs e)
         {
             string Description = txtDesc.Text;
@@ -229,16 +209,6 @@ namespace iTasks
         private void btFechar_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        private void cbTipoTarefa_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dtInicio_ValueChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

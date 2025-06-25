@@ -169,7 +169,6 @@
             this.cbTipoTarefa.Name = "cbTipoTarefa";
             this.cbTipoTarefa.Size = new System.Drawing.Size(311, 23);
             this.cbTipoTarefa.TabIndex = 12;
-            this.cbTipoTarefa.SelectedIndexChanged += new System.EventHandler(this.cbTipoTarefa_SelectedIndexChanged);
             // 
             // dtInicio
             // 
@@ -179,7 +178,6 @@
             this.dtInicio.Name = "dtInicio";
             this.dtInicio.Size = new System.Drawing.Size(200, 23);
             this.dtInicio.TabIndex = 14;
-            this.dtInicio.ValueChanged += new System.EventHandler(this.dtInicio_ValueChanged);
             // 
             // label6
             // 
