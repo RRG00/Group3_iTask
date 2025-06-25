@@ -59,6 +59,8 @@ namespace iTasks
                 deleteTask.Visible = false;
                 exportarParaCSVToolStripMenuItem.Visible = false;
                 utilizadoresToolStripMenuItem.Visible = false;
+                buttonTaskDoing.Visible = false;
+
             }
         }
 
@@ -172,15 +174,18 @@ namespace iTasks
 
         private void tarefasTerminadasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form newForm = new frmConsultarTarefasConcluidas();
+            string userRole = GetUserRole(user);
+            Form newForm = new frmConsultarTarefasConcluidas(user.Id, userRole);
             newForm.ShowDialog();
         }
 
         private void tarefasEmCursoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form newForm = new frmConsultaTarefasEmCurso();
-            newForm.ShowDialog();
+            string userRole = GetUserRole(user);
+            Form newForm = new frmConsultaTarefasEmCurso(user.Id, userRole);
+            newForm.Show();
         }
+
 
         private void sairToolStripMenuItem_Click(object sender, EventArgs e)
         {

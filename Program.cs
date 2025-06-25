@@ -8,9 +8,7 @@ namespace iTasks
 {
     internal static class Program
     {
-        /// <summary>
-        /// Ponto de entrada principal para a aplicação.
-        /// </summary>
+       
         [STAThread]
         static void Main()
         {
