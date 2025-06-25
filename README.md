@@ -77,12 +77,7 @@ iTasks/
    ```
    Tools > NuGet Package Manager > Restore NuGet Packages
    ```
-
-4. **Configure a string de conexão**
-   - Edite o ficheiro `App.config`
-   - Ajuste a connection string para a sua instância SQL Server
-
-5. **Execute a aplicação**
+4. **Execute a aplicação**
    - A base de dados será criada automaticamente
    - Um utilizador admin será criado por defeito:
      - **Username**: admin
