@@ -65,7 +65,7 @@ iTasks/
 
 1. **Clone o repositório**
    ```bash
-   git clone (https://github.com/RRG00/Group3_iTask)
+   git clone (https://github.com/RRG00/PSI_DA_PL-C)
    ```
 
 2. **Abra o projeto no Visual Studio**
